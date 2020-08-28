@@ -1,0 +1,16 @@
+@import '_variables';
+@import '_grid';
+
+html {
+  // font-size: 10px;
+  min-height: 100%;
+
+  body {
+    width: 100%;
+    background-color: $gray-dark;
+  }
+
+  h1 {
+    color: $red;
+  }
+}
