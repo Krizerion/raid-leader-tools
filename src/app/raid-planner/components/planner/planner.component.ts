@@ -15,6 +15,6 @@ export class PlannerComponent {
     { name: 'Racor', class: CLASSES.WARLOCK, spec: SPECS.WLOCK_DESTRO, role: getRoleImageBySpec('WLOCK_DESTRO') },
     { name: 'Verkow', class: CLASSES.PALADIN, spec: SPECS.PALA_RET, role: getRoleImageBySpec('PALA_RET') },
     { name: 'Rockish', class: CLASSES.DEATH_KNIGHT, spec: SPECS.DK_BLOOD, role: getRoleImageBySpec('DK_BLOOD') },
-    { name: 'Silent', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('ROGUE_OUTLAW') }
+    { name: 'Silentdeathh', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('DRU_RESTO') }
   ];
 }

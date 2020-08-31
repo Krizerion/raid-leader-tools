@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PlayerCardComponent {
   @Input() name: string;
-  @Input() class: string;
-  @Input() spec: string;
-  @Input() role: string;
+  @Input() playerClass: string;
+  @Input() playerSpec: string;
+  @Input() playerRole: string;
 }

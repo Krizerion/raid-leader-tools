@@ -1,9 +1,36 @@
+@import 'src/styles/theme/_variables';
+@import 'src/styles/theme/_spacings';
+
 .player-card-container {
-  width: 300px;
+  border: 1px solid black;
+  padding: $spacing-xxs 0 $spacing-xxs 0;
+  margin-bottom: $spacing-xs;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background-color: $paladin;
+  box-shadow: inset 0px 6px 8px -3px rgba(0, 0, 0, 0.75), inset 0px -6px 8px -3px rgba(0, 0, 0, 0.75);
+
+  .role-icon {
+    flex: 0 0 10%;
+  }
+
+  .player-name {
+    flex: 0 0 30%;
+    padding-top: $spacing-xxxs;
+    font-size: large;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+
+  .class-icon,
+  .spec-icon {
+    flex: 0 0 10%;
+  }
 
   .icon {
     img {
-      width: 50px;
+      width: 30px;
     }
   }
 }
