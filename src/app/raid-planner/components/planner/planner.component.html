@@ -7,10 +7,14 @@
           <rv-player-card
             *ngFor="let player of players"
             [name]="player.name"
-            [playerClass]="player.class"
-            [playerSpec]="player.spec"
-            [playerRole]="player.role"
+            [classImage]="player.class"
+            [specImage]="player.spec"
+            [roleImage]="player.role"
+            [className]="player.className"
           ></rv-player-card>
+          <div class="empty-card-container">
+            <div class="empty-card"></div>
+          </div>
         </div>
       </div>
     </div>

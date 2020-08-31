@@ -1,5 +1,5 @@
 // ROLES
-export const ROLES = {
+export const ROLES_IMG = {
   MDPS: 'assets/images/role-icons/mdps.png',
   RDPS: 'assets/images/role-icons/rdps.png',
   TANK: 'assets/images/role-icons/tank.png',
@@ -7,7 +7,7 @@ export const ROLES = {
 };
 
 // CLASSES
-export const CLASSES = {
+export const CLASSES_IMG = {
   DEATH_KNIGHT: 'assets/images/class-icons/deathknight.png',
   DEMON_HUNTER: 'assets/images/class-icons/demonhunter.png',
   DRUID: 'assets/images/class-icons/druid.png',
@@ -23,7 +23,7 @@ export const CLASSES = {
 };
 
 // SPECS
-export const SPECS = {
+export const SPECS_IMG = {
   DH_HAVOC: 'assets/images/spec-icons/dh-havoc.png',
   DH_VENG: 'assets/images/spec-icons/dh-vengance.png',
   DK_BLOOD: 'assets/images/spec-icons/dk-blood.png',

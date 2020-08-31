@@ -1,20 +1,15 @@
 @import 'src/styles/theme/_variables';
 @import 'src/styles/theme/_spacings';
+@import 'src/styles/theme/_mixins';
 
 :host {
   display: inline-block;
 
   .player-card-container {
-    border: 1px solid black;
-    padding: $spacing-xxs $spacing-xxxs;
-    margin: 0 1px 1px 0;
-    display: flex;
-    justify-content: space-between;
-    background-color: $paladin;
-    box-shadow: inset 0px 6px 8px -3px rgba(0, 0, 0, 0.75), inset 0px -6px 8px -3px rgba(0, 0, 0, 0.75);
+    @include player-card;
 
     .player-name {
-      width: 85px;
+      width: 90px;
       align-self: center;
       padding-top: $spacing-xxxs;
       font-size: 14px;
@@ -28,7 +23,7 @@
     .role-icon {
       align-self: center;
       img {
-        width: 30px;
+        width: 25px;
       }
     }
 

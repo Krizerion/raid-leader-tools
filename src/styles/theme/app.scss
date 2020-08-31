@@ -1,5 +1,7 @@
 @import '_variables';
 @import '_grid';
+@import '_spacings';
+@import '_mixins';
 
 html {
   // font-size: 10px;
@@ -18,4 +20,52 @@ html {
   h1 {
     color: $red;
   }
+}
+
+.death_knight_bg {
+  background-color: $death-knight;
+}
+
+.demon_hunter_bg {
+  background-color: $demon-hunter;
+}
+
+.druid_bg {
+  background-color: $druid;
+}
+
+.hunter_bg {
+  background-color: $hunter;
+}
+
+.mage_bg {
+  background-color: $mage;
+}
+
+.monk_bg {
+  background-color: $monk;
+}
+
+.paladin_bg {
+  background-color: $paladin;
+}
+
+.priest_bg {
+  background-color: $priest;
+}
+
+.rogue_bg {
+  background-color: $rogue;
+}
+
+.shaman_bg {
+  background-color: $shaman;
+}
+
+.warrior_bg {
+  background-color: $warrior;
+}
+
+.warlock_bg {
+  background-color: $warlock;
 }

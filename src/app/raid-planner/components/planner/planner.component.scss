@@ -1,0 +1,13 @@
+@import 'src/styles/theme/_mixins';
+@import 'src/styles/theme/_variables';
+@import 'src/styles/theme/_spacings';
+
+.empty-card-container {
+  display: inline-block;
+
+  .empty-card {
+    @include player-card;
+    border: 1px solid green;
+    height: 52px;
+  }
+}

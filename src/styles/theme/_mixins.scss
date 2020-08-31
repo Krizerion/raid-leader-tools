@@ -1,0 +1,8 @@
+@mixin player-card {
+  border: 1px solid black;
+  padding: $spacing-xxs $spacing-xxxs;
+  margin: 0 1px 1px 0;
+  display: flex;
+  width: 140px;
+  box-shadow: inset 0px 6px 8px -3px rgba(0, 0, 0, 0.75), inset 0px -6px 8px -3px rgba(0, 0, 0, 0.75);
+}

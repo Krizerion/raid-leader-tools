@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SPECS, CLASSES, ROLES } from '@app/shared/constants/class-spec-role-paths.constants';
-import { getRoleImageBySpec } from '@app/shared/utils/class-spec-utils';
+import { SPECS_IMG, CLASSES_IMG, ROLES_IMG } from '@app/shared/constants/classes-img-paths.constants';
+import { CLASSES_NAMES } from '@app/shared/constants/classes-names.constsnts';
 
 @Component({
   selector: 'rv-planner',
@@ -8,25 +8,38 @@ import { getRoleImageBySpec } from '@app/shared/utils/class-spec-utils';
   styleUrls: ['./planner.component.scss']
 })
 export class PlannerComponent {
-  public SPECS = SPECS;
-  public CLASSES = CLASSES;
-  public ROLES = ROLES;
+  public SPECS = SPECS_IMG;
+  public CLASSES = CLASSES_IMG;
+  public ROLES = ROLES_IMG;
+  public CLASS_NAMES = CLASSES_NAMES;
   public players = [
-    { name: 'Racor', class: CLASSES.WARLOCK, spec: SPECS.WLOCK_DESTRO, role: getRoleImageBySpec('WLOCK_DESTRO') },
-    { name: 'Verkow', class: CLASSES.PALADIN, spec: SPECS.PALA_RET, role: getRoleImageBySpec('PALA_RET') },
-    { name: 'Rockish', class: CLASSES.DEATH_KNIGHT, spec: SPECS.DK_BLOOD, role: getRoleImageBySpec('DK_BLOOD') },
-    { name: 'Silentdeathh', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('DRU_RESTO') },
-    { name: 'Racor', class: CLASSES.WARLOCK, spec: SPECS.WLOCK_DESTRO, role: getRoleImageBySpec('WLOCK_DESTRO') },
-    { name: 'Verkow', class: CLASSES.PALADIN, spec: SPECS.PALA_RET, role: getRoleImageBySpec('PALA_RET') },
-    { name: 'Rockish', class: CLASSES.DEATH_KNIGHT, spec: SPECS.DK_BLOOD, role: getRoleImageBySpec('DK_BLOOD') },
-    { name: 'Silentdeathh', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('DRU_RESTO') },
-    { name: 'Racor', class: CLASSES.WARLOCK, spec: SPECS.WLOCK_DESTRO, role: getRoleImageBySpec('WLOCK_DESTRO') },
-    { name: 'Verkow', class: CLASSES.PALADIN, spec: SPECS.PALA_RET, role: getRoleImageBySpec('PALA_RET') },
-    { name: 'Rockish', class: CLASSES.DEATH_KNIGHT, spec: SPECS.DK_BLOOD, role: getRoleImageBySpec('DK_BLOOD') },
-    { name: 'Silentdeathh', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('DRU_RESTO') },
-    { name: 'Racor', class: CLASSES.WARLOCK, spec: SPECS.WLOCK_DESTRO, role: getRoleImageBySpec('WLOCK_DESTRO') },
-    { name: 'Verkow', class: CLASSES.PALADIN, spec: SPECS.PALA_RET, role: getRoleImageBySpec('PALA_RET') },
-    { name: 'Rockish', class: CLASSES.DEATH_KNIGHT, spec: SPECS.DK_BLOOD, role: getRoleImageBySpec('DK_BLOOD') },
-    { name: 'Silentdeathh', class: CLASSES.ROGUE, spec: SPECS.ROGUE_OUTLAW, role: getRoleImageBySpec('DRU_RESTO') }
+    {
+      name: 'Racor',
+      class: this.CLASSES.WARLOCK,
+      spec: this.SPECS.WLOCK_DESTRO,
+      role: this.ROLES.RDPS,
+      className: this.CLASS_NAMES.WARLOCK
+    },
+    {
+      name: 'Verkow',
+      class: this.CLASSES.PALADIN,
+      spec: this.SPECS.PALA_RET,
+      role: this.ROLES.MDPS,
+      className: this.CLASS_NAMES.PALADIN
+    },
+    {
+      name: 'Silentdeathh',
+      class: this.CLASSES.ROGUE,
+      spec: this.SPECS.ROGUE_ASSA,
+      role: this.ROLES.MDPS,
+      className: this.CLASS_NAMES.ROGUE
+    },
+    {
+      name: 'Lyandria',
+      class: this.CLASSES.SHAMAN,
+      spec: this.SPECS.SHAM_RESTO,
+      role: this.ROLES.HEALER,
+      className: this.CLASS_NAMES.SHAMAN
+    }
   ];
 }

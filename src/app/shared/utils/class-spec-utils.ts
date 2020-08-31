@@ -1,14 +1,7 @@
 import { RDPS, TANKS, HEALERS } from '@app/shared/constants/specs-by-roles.constants';
-import { ROLES } from '@app/shared/constants/class-spec-role-paths.constants';
+import { ROLES_IMG } from '@app/shared/constants/classes-img-paths.constants';
 
-export function getRoleImageBySpec(spec: string): string {
-  if (TANKS.includes(spec)) {
-    return ROLES.TANK;
-  } else if (HEALERS.includes(spec)) {
-    return ROLES.HEALER;
-  } else if (RDPS.includes(spec)) {
-    return ROLES.RDPS;
-  } else {
-    return ROLES.MDPS;
-  }
+// TODO: Delete
+export function getBackgroundColorByClassName(className: string): string {
+  return `${className.split(' ').join('_').toLowerCase()}_bg`;
 }
