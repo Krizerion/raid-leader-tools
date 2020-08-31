@@ -2,12 +2,33 @@
 @import 'src/styles/theme/_variables';
 @import 'src/styles/theme/_spacings';
 
-.empty-card-container {
-  display: inline-block;
+.planner-container {
+  .all-cards-container {
+    display: flex;
+    flex-flow: row wrap;
+    .empty-card-container {
+      display: inline-block;
 
-  .empty-card {
-    @include player-card;
-    border: 1px solid green;
-    height: 52px;
+      .empty-card {
+        @include player-card;
+        justify-content: center;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darkgray;
+        }
+
+        img {
+          align-self: center;
+          width: 40px;
+        }
+      }
+    }
+  }
+
+  nz-select {
+    margin: 0 8px 10px 0;
+    width: 120px;
   }
 }

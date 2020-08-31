@@ -10,13 +10,15 @@ import { DashboardComponent } from '@app/dashboard/dashboard.component';
 import { AboutComponent } from '@app/about/about.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { AppRoutingModule } from '@app/app-routing.module';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, AboutComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, SharedModule, AppRoutingModule],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

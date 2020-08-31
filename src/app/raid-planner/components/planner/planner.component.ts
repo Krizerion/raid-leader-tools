@@ -16,7 +16,7 @@ export class PlannerComponent {
     {
       name: 'Racor',
       class: this.CLASSES.WARLOCK,
-      spec: this.SPECS.WLOCK_DESTRO,
+      spec: this.SPECS.WLOCK_AFF,
       role: this.ROLES.RDPS,
       className: this.CLASS_NAMES.WARLOCK
     },
@@ -40,6 +40,56 @@ export class PlannerComponent {
       spec: this.SPECS.SHAM_RESTO,
       role: this.ROLES.HEALER,
       className: this.CLASS_NAMES.SHAMAN
+    },
+    {
+      name: 'Octord',
+      class: this.CLASSES.PRIEST,
+      spec: this.SPECS.PRIEST_SHADOW,
+      role: this.ROLES.RDPS,
+      className: this.CLASS_NAMES.PRIEST
+    },
+    {
+      name: 'Rockish',
+      class: this.CLASSES.DEATH_KNIGHT,
+      spec: this.SPECS.DK_BLOOD,
+      role: this.ROLES.TANK,
+      className: this.CLASS_NAMES.DEATH_KNIGHT
+    },
+    {
+      name: 'Wshh',
+      class: this.CLASSES.MONK,
+      spec: this.SPECS.MONK_WIND,
+      role: this.ROLES.MDPS,
+      className: this.CLASS_NAMES.MONK
+    },
+    {
+      name: 'Tanuki',
+      class: this.CLASSES.DRUID,
+      spec: this.SPECS.DRU_RESTO,
+      role: this.ROLES.HEALER,
+      className: this.CLASS_NAMES.DRUID
     }
   ];
+  public addNewPlayerVisible = false;
+  public newPlayerRole = '';
+
+  showModal() {
+    this.addNewPlayerVisible = true;
+  }
+
+  handleOk(): void {
+    this.players.push({
+      name: 'Delusion',
+      class: this.CLASSES.WARLOCK,
+      spec: this.SPECS.WLOCK_DESTRO,
+      role: this.ROLES.RDPS,
+      className: this.CLASS_NAMES.WARLOCK
+    });
+    this.addNewPlayerVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.addNewPlayerVisible = false;
+  }
 }
