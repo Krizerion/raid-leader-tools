@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
   public specsArray = [];
 
   ngOnInit() {
-    Object.keys(this.specs).forEach(key => {
-      this.specsArray.push(this.specs[key]);
-    });
+    // Object.keys(this.specs).forEach(key => {
+    //   this.specsArray.push(this.specs[key]);
+    // });
   }
 }

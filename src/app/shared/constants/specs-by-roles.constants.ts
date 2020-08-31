@@ -1,0 +1,30 @@
+export const RDPS = [
+  'DRU_BALANCE',
+  'HUNT_BM',
+  'HUNT_MM',
+  'MAGE_FIRE',
+  'MAGE_FROST',
+  'MAGE_ARCANE',
+  'PRIEST_SHADOW',
+  'SHAM_ELE',
+  'WLOCK_AFF',
+  'WLOCK_DEMO',
+  'WLOCK_DESTRO'
+];
+export const MDPS = [
+  'DH_HAVOC',
+  'DK_FROST',
+  'DK_UNHOLY',
+  'DRU_FERAL',
+  'HUNT_SURV',
+  'MONK_WIND',
+  'PALA_RET',
+  'ROGUE_ASSA',
+  'ROGUE_OUTLAW',
+  'ROGUE_SUB',
+  'SHAM_ENH',
+  'WARR_ARMS',
+  'WARR_FURY'
+];
+export const TANKS = ['DH_VENG', 'DK_BLOOD', 'DRU_GUARDIAN', 'MONK_BREW', 'PALA_PROT', 'WARR_PROT'];
+export const HEALERS = ['DRU_RESTO', 'MONK_MIST', 'PALA_HOLY', 'PRIEST_HOLY', 'PRIEST_DISC', 'SHAM_RESTO'];

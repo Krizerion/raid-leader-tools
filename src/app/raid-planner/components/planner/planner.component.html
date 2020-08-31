@@ -1,3 +1,21 @@
-<p>
-  planner works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      This is main
+      <div class="row">
+        <div class="col-md-12">
+          <rv-player-card
+            *ngFor="let player of players"
+            [name]="player.name"
+            [class]="player.class"
+            [spec]="player.spec"
+            [role]="player.role"
+          ></rv-player-card>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      Sidebar
+    </div>
+  </div>
+</div>

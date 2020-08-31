@@ -6,6 +6,7 @@ export const ROLES = {
   HEALER: 'assets/images/role-icons/healer.png'
 };
 
+// CLASSES
 export const CLASSES = {
   DEATH_KNIGHT: 'assets/images/class-icons/deathknight.png',
   DEMON_HUNTER: 'assets/images/class-icons/demonhunter.png',
@@ -21,6 +22,7 @@ export const CLASSES = {
   WARRIOR: 'assets/images/class-icons/warrior.png'
 };
 
+// SPECS
 export const SPECS = {
   DH_HAVOC: 'assets/images/spec-icons/dh-havoc.png',
   DH_VENG: 'assets/images/spec-icons/dh-vengance.png',
