@@ -2,7 +2,8 @@
 <div class="container">
   <div class="rv-container">
     <h1>This is something from the app component</h1>
-    <img src="images/role-icons/mdps.png" alt="" />
+
+    <img *ngFor="let spec of specsArray" [src]="spec" alt="asd" width="64" />
     <!-- The routed views render in the <router-outlet>-->
     <router-outlet></router-outlet>
   </div>

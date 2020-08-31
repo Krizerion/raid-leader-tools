@@ -9,5 +9,6 @@
   "typescript.preferences.quoteStyle": "single",
   "tslint.autoFixOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "javascript.implicitProjectConfig.experimentalDecorators": true
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }

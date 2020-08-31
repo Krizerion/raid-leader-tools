@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from '@app/about/about.component';
+import { DashboardComponent } from '@app/dashboard/dashboard.component';
 
 // sets up routes constant where you define your routes
 const routes: Routes = [

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PlannerComponent } from './components/planner/planner.component';
-import { RaidPlannerRoutingModule } from './raid-planner.routing';
+import { RaidPlannerRoutingModule } from '@app/raid-planner/raid-planner.routing';
+import { PlannerComponent } from '@app/raid-planner/components/planner/planner.component';
 
 @NgModule({
   imports: [CommonModule, RaidPlannerRoutingModule],

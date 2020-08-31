@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PlannerComponent } from './components/planner/planner.component';
 import { NgModule } from '@angular/core';
+import { PlannerComponent } from '@app/raid-planner/components/planner/planner.component';
 
 const routes: Routes = [{ path: '', component: PlannerComponent }];
 

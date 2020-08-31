@@ -6,20 +6,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from '@app/dashboard/dashboard.component';
+import { AboutComponent } from '@app/about/about.component';
+import { SharedModule } from '@app/shared/shared.module';
+import { AppRoutingModule } from '@app/app-routing.module';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [	AppComponent,
-    DashboardComponent,
-      AboutComponent
-   ],
+  declarations: [AppComponent, DashboardComponent, AboutComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, BrowserAnimationsModule, SharedModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
