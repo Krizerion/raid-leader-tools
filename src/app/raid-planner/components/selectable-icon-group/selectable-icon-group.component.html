@@ -1,0 +1,10 @@
+<div>
+  <rv-selectable-icon
+    *ngFor="let icon of iconData"
+    [isSelected]="icon.selected"
+    [iconUrl]="icon.url"
+    [id]="icon.id"
+    [tooltipText]="icon.tooltipText"
+    (iconSelected)="toggleItemsSelection($event)"
+  ></rv-selectable-icon>
+</div>

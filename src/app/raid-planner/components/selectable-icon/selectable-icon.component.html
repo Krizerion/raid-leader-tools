@@ -1,0 +1,10 @@
+<div
+  class="icon-container"
+  [ngClass]="{ selected: isSelected }"
+  (click)="toggleSelection()"
+  nz-tooltip
+  [nzTooltipTitle]="tooltipText"
+  [nzTooltipMouseEnterDelay]="1"
+>
+  <img [src]="iconUrl" alt="" />
+</div>

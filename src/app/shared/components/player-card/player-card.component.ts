@@ -8,9 +8,7 @@ import { getBackgroundColorByClassName } from '@app/shared/utils/class-spec-util
 })
 export class PlayerCardComponent implements OnInit {
   @Input() name: string;
-  @Input() className: string = 'Demon Hunter';
-  // @Input() specName: string;
-  // @Input() roleName: string;
+  @Input() className = '';
   @Input() classImage: string;
   @Input() specImage: string;
   @Input() roleImage: string;
