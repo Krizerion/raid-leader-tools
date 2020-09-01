@@ -1,15 +1,15 @@
-<div>
+<div class="add-player-container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 player-name-container">
       <input nz-input placeholder="Enter player name..." [(ngModel)]="name" (ngModelChange)="newNameSelected($event)" />
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 player-class-container">
       <rv-selectable-icon-group
         [iconData]="classIconData"
         (iconSelected)="newClassSelected($event)"
       ></rv-selectable-icon-group>
     </div>
-    <div class="col-md-12" *ngIf="specIconData.length > 0">
+    <div class="col-md-12 player-spec-container" *ngIf="specIconData.length > 0">
       <rv-selectable-icon-group
         [iconData]="specIconData"
         (iconSelected)="newSpecSelected($event)"

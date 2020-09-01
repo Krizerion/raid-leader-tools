@@ -25,7 +25,7 @@ export class PlannerComponent {
 
   openAddNewPlayerModal(): void {
     this.modal.create({
-      nzTitle: 'This is a notification message',
+      nzTitle: 'Add a new player',
       nzContent: AddPlayerComponent,
       nzOnOk: this.handleOk.bind(this),
       nzOnCancel: this.handleCancel.bind(this)
