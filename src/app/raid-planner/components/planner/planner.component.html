@@ -14,42 +14,9 @@
               [className]="player.className"
             ></rv-player-card>
             <div class="empty-card-container">
-              <div class="empty-card" (click)="showModal()">
+              <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />
               </div>
-              <nz-modal
-                [(nzVisible)]="addNewPlayerVisible"
-                nzTitle="The first Modal"
-                (nzOnCancel)="handleCancel()"
-                (nzOnOk)="handleOk()"
-              >
-                <div class="row">
-                  <div class="col-md-12">
-                    Name
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <nz-select ngModel="warlock">
-                      <nz-option nzValue="warlock" nzLabel="Warlock"></nz-option>
-                      <nz-option nzValue="warrior" nzLabel="Warrior"></nz-option>
-                      <nz-option nzValue="paladin" nzLabel="Paladin"></nz-option>
-                    </nz-select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <nz-select ngModel="affliction">
-                      <nz-option nzValue="affliction" nzLabel="Affliction"></nz-option>
-                      <nz-option nzValue="destruction" nzLabel="Destruction"></nz-option>
-                      <nz-option nzValue="demonology" nzLabel="Demonology"></nz-option>
-                    </nz-select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">Role - {{ newPlayerRole }}</div>
-                </div>
-              </nz-modal>
             </div>
           </div>
         </div>
