@@ -3,6 +3,9 @@ import { AddPlayerComponent } from '@app/raid-planner/components/add-player/add-
 import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
 import { CLASSES_NAMES } from '@app/shared/constants/classes-names.constsnts';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
+import { AppState } from '@app/store';
+import { addNewPlayerBtnClick } from '@app/store/raidview/raidview.actions';
+import { Store } from '@ngrx/store';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
@@ -18,11 +21,16 @@ export class PlannerComponent {
   public players = [];
   public newPlayerRole = '';
 
-  constructor(private modal: NzModalService, private plannerApiService: PlannerApiService) {
+  constructor(
+    private modal: NzModalService,
+    private plannerApiService: PlannerApiService,
+    private store: Store<AppState>
+  ) {
     this.players = this.plannerApiService.getPlayers();
   }
 
   openAddNewPlayerModal(): void {
+    this.store.dispatch(addNewPlayerBtnClick());
     this.modal.create({
       nzTitle: 'This is a notification message',
       nzContent: AddPlayerComponent,
