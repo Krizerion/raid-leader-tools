@@ -1,20 +1,52 @@
-import { addNewPlayerBtnClick } from '@app/store/raidview/raidview.actions';
+import {
+  addNewPlayerBtnClick,
+  selectNewPlayerClass,
+  selectNewPlayerName,
+  selectNewPlayerSpec
+} from '@app/store/raidview/raidview.actions';
 import { RaidviewState } from '@app/store/raidview/raidview.state';
 import { Action, createReducer, on } from '@ngrx/store';
 
-export interface State {
-  isLoading: boolean;
-}
-
-export const initialState: State = {
-  isLoading: false
+export const initialState: RaidviewState = {
+  isLoading: false,
+  addNewPlayer: {
+    playerClass: '',
+    spec: '',
+    name: ''
+  }
 };
 
 const reducer = createReducer(
   initialState,
   on(addNewPlayerBtnClick, state => ({
     ...state,
-    isLoading: true
+    addNewPlayer: {
+      playerClass: '',
+      spec: '',
+      name: ''
+    }
+  })),
+  on(selectNewPlayerName, (state, payload) => ({
+    ...state,
+    addNewPlayer: {
+      ...state.addNewPlayer,
+      name: payload.name
+    }
+  })),
+  on(selectNewPlayerClass, (state, payload) => ({
+    ...state,
+    addNewPlayer: {
+      ...state.addNewPlayer,
+      playerClass: payload.playerClass,
+      spec: ''
+    }
+  })),
+  on(selectNewPlayerSpec, (state, payload) => ({
+    ...state,
+    addNewPlayer: {
+      ...state.addNewPlayer,
+      spec: payload.spec
+    }
   }))
 );
 

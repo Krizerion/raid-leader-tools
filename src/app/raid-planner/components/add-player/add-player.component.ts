@@ -1,37 +1,31 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/components/add-player/add-player.constants';
 import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { AppState } from '@app/store';
+import { selectNewPlayerClass, selectNewPlayerName, selectNewPlayerSpec } from '@app/store/raidview/raidview.actions';
+import { Store } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'rv-add-player',
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.scss']
 })
-export class AddPlayerComponent implements OnInit {
-  // @Output() selectedName = new EventEmitter<string>();
-  // @Output() selectedClass = new EventEmitter<string>();
-  // @Output() selectedSpec = new EventEmitter<string>();
+export class AddPlayerComponent {
+  public name = '';
   public classIconData: SelectableIcon[] = [...CLASS_DATA];
   public specIconData: SelectableIcon[] = [];
-  public name = '';
-  public selectedClass = '';
-  public selectedSpec = '';
-  constructor(private modal: NzModalService, private viewContainerRef: ViewContainerRef) {}
 
-  ngOnInit() {
-    // this.viewContainerRef.
-  }
+  constructor(private store: Store<AppState>) {}
 
   newNameSelected(event: string): void {
-    // this.selectedName.emit(event);
+    this.store.dispatch(selectNewPlayerName({ name: event }));
   }
 
   newClassSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
-      // this.selectedClass.emit(event.id);
-      this.selectedClass = event.id;
-      this.specIconData = { ...SPEC_DATA }[event.id] || [];
+      this.store.dispatch(selectNewPlayerClass({ playerClass: event.id }));
+      this.specIconData = cloneDeep(SPEC_DATA[event.id]) || [];
     } else {
       this.specIconData = [];
     }
@@ -39,8 +33,7 @@ export class AddPlayerComponent implements OnInit {
 
   newSpecSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
-      this.selectedSpec = event.id;
-      // this.selectedClass.emit(event.id);
+      this.store.dispatch(selectNewPlayerSpec({ spec: event.id }));
     }
   }
 }
