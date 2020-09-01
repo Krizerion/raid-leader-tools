@@ -1,0 +1,9 @@
+@import 'src/styles/theme/_spacings';
+
+.add-player-container {
+  .player-name-container,
+  .player-class-container,
+  .player-spec-container {
+    margin-bottom: $spacing-xl;
+  }
+}

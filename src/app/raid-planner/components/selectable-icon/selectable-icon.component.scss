@@ -1,0 +1,17 @@
+.icon-container {
+  display: inline-block;
+  cursor: pointer;
+  filter: grayscale(0.8);
+  margin: 0 0 5px 0;
+  img {
+    width: 70px;
+  }
+}
+
+.selected {
+  filter: grayscale(0);
+  img {
+    outline: 5px solid green;
+    outline-offset: -5px;
+  }
+}
