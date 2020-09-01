@@ -4,11 +4,13 @@
   "files.insertFinalNewline": true,
   "html.format.wrapAttributes": "force",
   "scssFormatter.singleQuote": true,
-  "editor.formatOnSave": true,
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
-  "tslint.autoFixOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "prettier.tslintIntegration": true,
+  "tslint.autoFixOnSave": false
 }
