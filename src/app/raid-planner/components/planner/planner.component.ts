@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./planner.component.scss']
 })
 export class PlannerComponent implements OnInit {
-  public players = [];
+  public players$ = this.plannerApiService.getPlayers();
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
   public newPlayerData: any;
   public newPlayerRole = '';
@@ -28,7 +28,6 @@ export class PlannerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.players = this.plannerApiService.getPlayers();
     this.newPlayerData$.subscribe(data => {
       this.newPlayerData = data;
     });
@@ -47,7 +46,7 @@ export class PlannerComponent implements OnInit {
 
   handleOk(data: AddPlayerComponent): void {
     const { name, playerClass, spec } = this.newPlayerData;
-    this.players.push({
+    this.plannerApiService.addPlayer({
       name,
       class: CLASSES_IMG[playerClass],
       spec: SPECS_IMG[this.newPlayerData.spec],

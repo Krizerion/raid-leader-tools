@@ -22,7 +22,7 @@ export class AddPlayerComponent implements OnInit {
 
   constructor(private store: Store<AppState>, private modalRef: NzModalRef) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.newPlayerData$.subscribe(data => {
       if (data.name.length > 0 && data.name.length <= 12 && data.playerClass && data.spec) {
         this.modalRef.updateConfig({ nzOkDisabled: false });
@@ -36,8 +36,11 @@ export class AddPlayerComponent implements OnInit {
     this.store.dispatch(selectNewPlayerName({ name: event }));
   }
 
+  // ! TODO, BUGG!
   newClassSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
+      this.classIconData.forEach(icon => (icon.selected = false));
+      this.classIconData.filter(icon => icon.id === event.id)[0].selected = true;
       this.store.dispatch(selectNewPlayerClass({ playerClass: event.id }));
       this.specIconData = cloneDeep(SPEC_DATA[event.id]) || [];
     } else {
