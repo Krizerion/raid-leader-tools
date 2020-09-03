@@ -1,7 +1,13 @@
 <div class="add-player-container">
   <div class="row">
     <div class="col-md-12 player-name-container">
-      <input nz-input placeholder="Enter player name..." [(ngModel)]="name" (ngModelChange)="newNameSelected($event)" />
+      <input
+        max="12"
+        nz-input
+        placeholder="Enter player name..."
+        [ngModel]="name"
+        (ngModelChange)="newNameSelected($event)"
+      />
     </div>
     <div class="col-md-12 player-class-container">
       <rv-selectable-icon-group
@@ -9,11 +15,17 @@
         (iconSelected)="newClassSelected($event)"
       ></rv-selectable-icon-group>
     </div>
-    <div class="col-md-12 player-spec-container" *ngIf="specIconData.length > 0">
+    <div class="col-md-12 player-spec-container">
       <rv-selectable-icon-group
+        *ngIf="specIconData.length > 0; else infoMessage"
         [iconData]="specIconData"
         (iconSelected)="newSpecSelected($event)"
       ></rv-selectable-icon-group>
+      <ng-template #infoMessage>
+        <div class="select-class-info-container">
+          <nz-alert nzType="info" nzMessage="Please select class to view available specs"></nz-alert>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

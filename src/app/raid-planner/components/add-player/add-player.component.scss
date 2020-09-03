@@ -6,4 +6,10 @@
   .player-spec-container {
     margin-bottom: $spacing-xl;
   }
+
+  .player-spec-container {
+    .select-class-info-container {
+      height: 75px;
+    }
+  }
 }
