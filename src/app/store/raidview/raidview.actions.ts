@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-export const addNewPlayerBtnClick = createAction('[Add player to roster] Click add player button');
+export const resetNewPlayerData = createAction('[Add player to roster] Click add player button');
 
 export const selectNewPlayerName = createAction(
   '[Add player to roster] Choose new player name',

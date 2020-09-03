@@ -6,7 +6,7 @@ import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecName } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
 import { newPlayerData } from '@app/store/raidview';
-import { addNewPlayerBtnClick } from '@app/store/raidview/raidview.actions';
+import { resetNewPlayerData } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
@@ -20,7 +20,6 @@ export class PlannerComponent implements OnInit {
   public players = [];
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
   public newPlayerData: any;
-  public okBtnDisabled = false;
   public newPlayerRole = '';
   constructor(
     private modal: NzModalService,
@@ -32,18 +31,15 @@ export class PlannerComponent implements OnInit {
     this.players = this.plannerApiService.getPlayers();
     this.newPlayerData$.subscribe(data => {
       this.newPlayerData = data;
-      if (data.name.length > 0 && data.name.length <= 12 && data.playerClass && data.spec) {
-        this.okBtnDisabled = false;
-      }
     });
   }
 
   openAddNewPlayerModal(): void {
-    this.store.dispatch(addNewPlayerBtnClick());
+    this.store.dispatch(resetNewPlayerData());
     this.modal.create({
       nzTitle: 'Add a new player',
       nzContent: AddPlayerComponent,
-      nzOkDisabled: this.okBtnDisabled,
+      nzOkDisabled: true,
       nzOnOk: this.handleOk.bind(this),
       nzOnCancel: this.handleCancel.bind(this)
     });
@@ -61,6 +57,6 @@ export class PlannerComponent implements OnInit {
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
+    this.store.dispatch(resetNewPlayerData());
   }
 }

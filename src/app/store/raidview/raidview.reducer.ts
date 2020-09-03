@@ -1,5 +1,5 @@
 import {
-  addNewPlayerBtnClick,
+  resetNewPlayerData,
   selectNewPlayerClass,
   selectNewPlayerName,
   selectNewPlayerSpec
@@ -18,7 +18,7 @@ export const initialState: RaidviewState = {
 
 const reducer = createReducer(
   initialState,
-  on(addNewPlayerBtnClick, state => ({
+  on(resetNewPlayerData, state => ({
     ...state,
     addNewPlayer: {
       playerClass: '',
