@@ -1,14 +1,15 @@
-<div class="player-card-container" [ngClass]="cssBackgroundClass">
-  <div class="role-icon icon">
-    <img [src]="roleImage" alt="role" />
+<div class="card-container" [ngClass]="cssBackgroundClass">
+  <div class="left-icon icon" *ngIf="leftImageSrc">
+    <img [src]="leftImageSrc" alt="left-icon" />
   </div>
-  <div class="player-name">{{ name }}</div>
-  <div class="class-spec-icons">
-    <div class="class-icon icon">
-      <img [src]="classImage" alt="class" />
+  <div *ngIf="leftText" class="left-text">{{ leftText }}</div>
+  <div *ngIf="centerText" class="center-text">{{ centerText }}</div>
+  <div class="right-icons">
+    <div class="top-right-icon icon" *ngIf="topRightImgSrc">
+      <img [src]="topRightImgSrc" alt="top-right-icon" />
     </div>
-    <div class="spec-icon icon">
-      <img [src]="specImage" alt="spec" />
+    <div class="bottom-right-icon icon" *ngIf="bottomRightImgSrc">
+      <img [src]="bottomRightImgSrc" alt="bottom-right-icon" />
     </div>
   </div>
 </div>

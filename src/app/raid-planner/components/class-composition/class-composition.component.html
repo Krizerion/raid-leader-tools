@@ -1,0 +1,14 @@
+<div class="composition-container">
+  <p>Classes</p>
+  <div class="row">
+    <div class="col-md-12">
+      <rv-player-card
+        class="card-item"
+        *ngFor="let class of classData"
+        [leftText]="'3'"
+        [centerText]="getClassNameById(class.id)"
+        [className]="class.id"
+      ></rv-player-card>
+    </div>
+  </div>
+</div>

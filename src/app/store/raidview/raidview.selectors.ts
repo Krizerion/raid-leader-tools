@@ -3,4 +3,4 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 const raidviewState = createFeatureSelector<RaidviewState>('raidview');
 
-export const newPlayerData = createSelector(raidviewState, state => state.addNewPlayer);
+export const newPlayerData = createSelector(raidviewState, state => state.planner.addNewPlayer);

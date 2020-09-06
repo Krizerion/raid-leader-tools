@@ -1,5 +1,5 @@
 import { CLASSES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
-import { CLASSES_NAMES, SPECS_NAMES } from '@app/shared/constants/classes-names.constants';
+import { CLASSES_NAMES, SPECS_NAMES } from '@app/shared/constants/classes-specs-roles.constants';
 import { SelectableIcon } from '@app/shared/models/planner.models';
 
 export const CLASS_DATA: SelectableIcon[] = [

@@ -2,17 +2,21 @@ import {
   resetNewPlayerData,
   selectNewPlayerClass,
   selectNewPlayerName,
-  selectNewPlayerSpec
+  selectNewPlayerSpec,
+  viewPlayersData
 } from '@app/store/raidview/raidview.actions';
 import { RaidviewState } from '@app/store/raidview/raidview.state';
 import { Action, createReducer, on } from '@ngrx/store';
 
 export const initialState: RaidviewState = {
   isLoading: false,
-  addNewPlayer: {
-    playerClass: '',
-    spec: '',
-    name: ''
+  planner: {
+    players: [],
+    addNewPlayer: {
+      playerClass: '',
+      spec: '',
+      name: ''
+    }
   }
 };
 
@@ -20,32 +24,51 @@ const reducer = createReducer(
   initialState,
   on(resetNewPlayerData, state => ({
     ...state,
-    addNewPlayer: {
-      playerClass: '',
-      spec: '',
-      name: ''
+    planner: {
+      ...state.planner,
+      addNewPlayer: {
+        playerClass: '',
+        spec: '',
+        name: ''
+      }
+    }
+  })),
+  on(viewPlayersData, (state, payload) => ({
+    ...state,
+    planner: {
+      ...state.planner,
+      players: payload.players
     }
   })),
   on(selectNewPlayerName, (state, payload) => ({
     ...state,
-    addNewPlayer: {
-      ...state.addNewPlayer,
-      name: payload.name
+    planner: {
+      ...state.planner,
+      addNewPlayer: {
+        ...state.planner.addNewPlayer,
+        name: payload.name
+      }
     }
   })),
   on(selectNewPlayerClass, (state, payload) => ({
     ...state,
-    addNewPlayer: {
-      ...state.addNewPlayer,
-      playerClass: payload.playerClass,
-      spec: ''
+    planner: {
+      ...state.planner,
+      addNewPlayer: {
+        ...state.planner.addNewPlayer,
+        playerClass: payload.playerClass,
+        spec: ''
+      }
     }
   })),
   on(selectNewPlayerSpec, (state, payload) => ({
     ...state,
-    addNewPlayer: {
-      ...state.addNewPlayer,
-      spec: payload.spec
+    planner: {
+      ...state.planner,
+      addNewPlayer: {
+        ...state.planner.addNewPlayer,
+        spec: payload.spec
+      }
     }
   }))
 );

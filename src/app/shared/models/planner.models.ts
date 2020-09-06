@@ -9,3 +9,10 @@ export interface IconSelectionToggleEventData {
   id: string;
   selected: boolean;
 }
+
+export interface Player {
+  name: string;
+  classId: string;
+  specId: string;
+  roleId: string;
+}

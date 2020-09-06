@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AddPlayerComponent } from '@app/raid-planner/components/add-player/add-player.component';
 import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
-import { CLASSES_NAMES } from '@app/shared/constants/classes-names.constants';
+import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
-import { getRoleBySpecName } from '@app/shared/utils/class-spec-utils';
+import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
 import { newPlayerData } from '@app/store/raidview';
 import { resetNewPlayerData } from '@app/store/raidview/raidview.actions';
@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./planner.component.scss']
 })
 export class PlannerComponent implements OnInit {
-  public players$ = this.plannerApiService.getPlayers();
+  public players$: Observable<Player[]> = this.plannerApiService.getPlayers();
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
   public newPlayerData: any;
   public newPlayerRole = '';
@@ -27,10 +27,12 @@ export class PlannerComponent implements OnInit {
     private store: Store<AppState>
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.newPlayerData$.subscribe(data => {
       this.newPlayerData = data;
     });
+
+    // this.players$.subscribe(data => );
   }
 
   openAddNewPlayerModal(): void {
@@ -48,14 +50,25 @@ export class PlannerComponent implements OnInit {
     const { name, playerClass, spec } = this.newPlayerData;
     this.plannerApiService.addPlayer({
       name,
-      class: CLASSES_IMG[playerClass],
-      spec: SPECS_IMG[this.newPlayerData.spec],
-      role: ROLES_IMG[getRoleBySpecName(spec)],
-      className: CLASSES_NAMES[playerClass]
+      classId: playerClass,
+      specId: spec,
+      roleId: getRoleBySpecId(spec)
     });
   }
 
   handleCancel(): void {
     this.store.dispatch(resetNewPlayerData());
+  }
+
+  getClassIconById(id: string): string {
+    return CLASSES_IMG[id];
+  }
+
+  getSpecIconById(id: string): string {
+    return SPECS_IMG[id];
+  }
+
+  getRoleIconById(id: string): string {
+    return ROLES_IMG[id];
   }
 }

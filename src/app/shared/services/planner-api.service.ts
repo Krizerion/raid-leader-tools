@@ -1,44 +1,51 @@
 import { Injectable } from '@angular/core';
-import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
-import { CLASSES_NAMES } from '@app/shared/constants/classes-names.constants';
+import { Classes, Roles, Specs } from '@app/shared/constants/classes-specs-roles.constants';
+import { Player } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
+import { viewPlayersData } from '@app/store/raidview/raidview.actions';
 import { Store } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlannerApiService {
-  private players = [
+  private players: Player[] = [
     {
       name: 'Racor',
-      class: CLASSES_IMG.WARLOCK,
-      spec: SPECS_IMG.WLOCK_AFF,
-      role: ROLES_IMG.RDPS,
-      className: CLASSES_NAMES.WARLOCK
+      classId: Classes.WARLOCK,
+      specId: Specs.WLOCK_AFF,
+      roleId: Roles.RDPS
     },
     {
       name: 'Verkow',
-      class: CLASSES_IMG.PALADIN,
-      spec: SPECS_IMG.PALA_PROT,
-      role: ROLES_IMG.TANK,
-      className: CLASSES_NAMES.PALADIN
+      classId: Classes.DEATH_KNIGHT,
+      specId: Specs.PALA_PROT,
+      roleId: Roles.TANK
     },
     {
       name: 'Lyandria',
-      class: CLASSES_IMG.SHAMAN,
-      spec: SPECS_IMG.SHAM_RESTO,
-      role: ROLES_IMG.HEALER,
-      className: CLASSES_NAMES.SHAMAN
+      classId: Classes.SHAMAN,
+      specId: Specs.SHAM_RESTO,
+      roleId: Roles.HEALER
+    },
+    {
+      name: 'Silent',
+      classId: Classes.ROGUE,
+      specId: Specs.ROGUE_ASSA,
+      roleId: Roles.MDPS
     }
   ];
   constructor(private store: Store<AppState>) {}
 
-  getPlayers(): Observable<any> {
+  getPlayers(): Observable<Player[]> {
+    this.store.dispatch(viewPlayersData({ players: cloneDeep(this.players) }));
     return of(this.players);
   }
 
-  addPlayer(player: any) {
+  // TODO: dispatch new player add??
+  addPlayer(player: Player): void {
     this.players.push(player);
   }
 }

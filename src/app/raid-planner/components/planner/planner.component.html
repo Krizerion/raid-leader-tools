@@ -1,17 +1,17 @@
 <div class="container planner-container">
   <div class="row">
     <div class="col-md-8">
-      This is main
+      <h3>Your team</h3>
       <div class="row">
         <div class="col-md-12">
           <div class="all-cards-container">
             <rv-player-card
               *ngFor="let player of players$ | async"
-              [name]="player.name"
-              [classImage]="player.class"
-              [specImage]="player.spec"
-              [roleImage]="player.role"
-              [className]="player.className"
+              [centerText]="player.name"
+              [topRightImgSrc]="getClassIconById(player.classId)"
+              [bottomRightImgSrc]="getSpecIconById(player.specId)"
+              [leftImageSrc]="getRoleIconById(player.roleId)"
+              [className]="player.classId"
             ></rv-player-card>
             <div class="empty-card-container">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
@@ -23,7 +23,12 @@
       </div>
     </div>
     <div class="col-md-4">
-      Sidebar
+      <h3>Composition Details</h3>
+      <div class="row">
+        <div class="col-md-12">
+          <rv-class-composition></rv-class-composition>
+        </div>
+      </div>
     </div>
   </div>
 </div>

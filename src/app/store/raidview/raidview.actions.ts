@@ -1,4 +1,8 @@
+import { Player } from '@app/shared/models/planner.models';
 import { createAction, props } from '@ngrx/store';
+
+// TODO request, response, onok , oncancel, should be in effects probably
+export const viewPlayersData = createAction('[View Players] View Players Data', props<{ players: Player[] }>());
 
 export const resetNewPlayerData = createAction('[Add player to roster] Click add player button');
 

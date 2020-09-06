@@ -1,3 +1,4 @@
+import { Roles, Specs } from '@app/shared/constants/classes-specs-roles.constants';
 import { HEALERS, RDPS, TANKS } from '@app/shared/constants/specs-by-roles.constants';
 
 // TODO: Delete
@@ -5,14 +6,14 @@ export function getBackgroundColorByClassName(className: string): string {
   return `${className.split(' ').join('_').toLowerCase()}_bg`;
 }
 
-export function getRoleBySpecName(specName: string): string {
-  if (TANKS.includes(specName)) {
-    return 'TANK';
-  } else if (HEALERS.includes(specName)) {
-    return 'HEALER';
-  } else if (RDPS.includes(specName)) {
-    return 'RDPS';
+export function getRoleBySpecId(specId: keyof typeof Specs): Roles {
+  if (TANKS.includes(specId)) {
+    return Roles.TANK;
+  } else if (HEALERS.includes(specId)) {
+    return Roles.HEALER;
+  } else if (RDPS.includes(specId)) {
+    return Roles.RDPS;
   } else {
-    return 'MDPS';
+    return Roles.MDPS;
   }
 }

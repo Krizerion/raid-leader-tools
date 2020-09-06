@@ -7,19 +7,16 @@ import { getBackgroundColorByClassName } from '@app/shared/utils/class-spec-util
   styleUrls: ['./player-card.component.scss']
 })
 export class PlayerCardComponent implements OnInit {
-  @Input() name: string;
+  @Input() centerText = '';
   @Input() className = '';
-  @Input() classImage: string;
-  @Input() specImage: string;
-  @Input() roleImage: string;
+  @Input() topRightImgSrc = '';
+  @Input() bottomRightImgSrc = '';
+  @Input() leftImageSrc = '';
+  @Input() leftText = '';
 
   public cssBackgroundClass = '';
 
-  ngOnInit() {
-    this.setClassColor();
-  }
-
-  setClassColor() {
+  ngOnInit(): void {
     this.cssBackgroundClass = getBackgroundColorByClassName(this.className);
   }
 }

@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "raidview"
+  "defaultProject": "raidview",
+  "cli": {
+    "analytics": "7ec00280-c5fa-4e33-b2f2-05c28a5b32a9"
+  }
 }

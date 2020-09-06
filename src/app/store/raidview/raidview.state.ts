@@ -1,8 +1,13 @@
+import { Player } from '@app/shared/models/planner.models';
+
 export interface RaidviewState {
   isLoading: boolean;
-  addNewPlayer: {
-    name: string;
-    playerClass: string;
-    spec: string;
+  planner: {
+    players: Player[];
+    addNewPlayer: {
+      name: string;
+      playerClass: string;
+      spec: string;
+    };
   };
 }

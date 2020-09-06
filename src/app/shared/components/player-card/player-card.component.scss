@@ -5,10 +5,10 @@
 :host {
   display: inline-block;
 
-  .player-card-container {
+  .card-container {
     @include player-card;
 
-    .player-name {
+    .center-text {
       width: 90px;
       align-self: center;
       padding-top: $spacing-xxxs;
@@ -20,17 +20,17 @@
       text-overflow: ellipsis;
     }
 
-    .role-icon {
+    .left-icon {
       align-self: center;
       img {
         width: 25px;
       }
     }
 
-    .class-spec-icons {
+    .right-icons {
       align-self: center;
-      .class-icon,
-      .spec-icon {
+      .top-right-icon,
+      .bottom-right-icon {
         img {
           width: 20px;
         }

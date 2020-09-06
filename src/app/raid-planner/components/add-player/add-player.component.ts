@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/components/add-player/add-player.constants';
+import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/constants/add-player.constants';
 import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
 import { newPlayerData } from '@app/store/raidview';
@@ -39,8 +39,7 @@ export class AddPlayerComponent implements OnInit {
   // ! TODO, BUGG!
   newClassSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
-      this.classIconData.forEach(icon => (icon.selected = false));
-      this.classIconData.filter(icon => icon.id === event.id)[0].selected = true;
+      this.select(this.classIconData, event);
       this.store.dispatch(selectNewPlayerClass({ playerClass: event.id }));
       this.specIconData = cloneDeep(SPEC_DATA[event.id]) || [];
     } else {
@@ -51,9 +50,15 @@ export class AddPlayerComponent implements OnInit {
 
   newSpecSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
+      this.select(this.specIconData, event);
       this.store.dispatch(selectNewPlayerSpec({ spec: event.id }));
     } else {
       this.store.dispatch(selectNewPlayerSpec({ spec: '' }));
     }
+  }
+
+  select(data: SelectableIcon[], event: IconSelectionToggleEventData): void {
+    data.forEach(icon => (icon.selected = false));
+    data.filter(icon => icon.id === event.id)[0].selected = true;
   }
 }
