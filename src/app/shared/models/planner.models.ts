@@ -15,4 +15,5 @@ export interface Player {
   classId: string;
   specId: string;
   roleId: string;
+  note?: string;
 }

@@ -2,11 +2,16 @@
   <div class="row">
     <div class="col-md-8">
       <h3>Your team</h3>
+
       <div class="row">
         <div class="col-md-12">
           <div class="all-cards-container">
             <rv-player-card
               *ngFor="let player of players$ | async"
+              nz-button
+              nzTooltipTitle="{{ player.note }}"
+              nzTooltipPlacement="topCenter"
+              nz-tooltip
               [centerText]="player.name"
               [topRightImgSrc]="getClassIconById(player.classId)"
               [bottomRightImgSrc]="getSpecIconById(player.specId)"

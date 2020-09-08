@@ -33,6 +33,13 @@ export class PlannerApiService {
       classId: Classes.ROGUE,
       specId: Specs.ROGUE_ASSA,
       roleId: Roles.MDPS
+    },
+    {
+      name: 'Octord',
+      classId: Classes.PRIEST,
+      specId: Specs.PRIEST_SHADOW,
+      roleId: Roles.RDPS,
+      note: 'Can play any spec, mostly sucks in raids'
     }
   ];
   constructor(private store: Store<AppState>) {}
