@@ -6,8 +6,9 @@ import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
 import { newPlayerData } from '@app/store/raidview';
-import { resetNewPlayerData } from '@app/store/raidview/raidview.actions';
+import { addPlayer, resetNewPlayerData, viewPlayersData } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 
@@ -32,7 +33,7 @@ export class PlannerComponent implements OnInit {
       this.newPlayerData = data;
     });
 
-    // this.players$.subscribe(data => );
+    this.players$.subscribe(data => this.store.dispatch(viewPlayersData({ players: cloneDeep(data) })));
   }
 
   openAddNewPlayerModal(): void {
@@ -48,12 +49,15 @@ export class PlannerComponent implements OnInit {
 
   handleOk(data: AddPlayerComponent): void {
     const { name, playerClass, spec } = this.newPlayerData;
-    this.plannerApiService.addPlayer({
+
+    const player = {
       name,
       classId: playerClass,
       specId: spec,
       roleId: getRoleBySpecId(spec)
-    });
+    };
+    this.plannerApiService.addPlayer(player);
+    this.store.dispatch(addPlayer({ player }));
   }
 
   handleCancel(): void {

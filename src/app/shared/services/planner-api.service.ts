@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Classes, Roles, Specs } from '@app/shared/constants/classes-specs-roles.constants';
 import { Player } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
-import { viewPlayersData } from '@app/store/raidview/raidview.actions';
 import { Store } from '@ngrx/store';
-import { cloneDeep } from 'lodash';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -40,7 +38,6 @@ export class PlannerApiService {
   constructor(private store: Store<AppState>) {}
 
   getPlayers(): Observable<Player[]> {
-    this.store.dispatch(viewPlayersData({ players: cloneDeep(this.players) }));
     return of(this.players);
   }
 

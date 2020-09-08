@@ -1,4 +1,6 @@
+import { Player } from '@app/shared/models/planner.models';
 import {
+  addPlayer,
   resetNewPlayerData,
   selectNewPlayerClass,
   selectNewPlayerName,
@@ -7,11 +9,28 @@ import {
 } from '@app/store/raidview/raidview.actions';
 import { RaidviewState } from '@app/store/raidview/raidview.state';
 import { Action, createReducer, on } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
+
+export const initialClassComposition: { [key: string]: number } = {
+  DEATH_KNIGHT: 0,
+  DEMON_HUNTER: 0,
+  DRUID: 0,
+  HUNTER: 0,
+  MAGE: 0,
+  MONK: 0,
+  PALADIN: 0,
+  PRIEST: 0,
+  ROGUE: 0,
+  SHAMAN: 0,
+  WARLOCK: 0,
+  WARRIOR: 0
+};
 
 export const initialState: RaidviewState = {
   isLoading: false,
   planner: {
     players: [],
+    classComposition: cloneDeep(initialClassComposition),
     addNewPlayer: {
       playerClass: '',
       spec: '',
@@ -37,7 +56,16 @@ const reducer = createReducer(
     ...state,
     planner: {
       ...state.planner,
+      classComposition: getClassComposition(payload.players),
       players: payload.players
+    }
+  })),
+  on(addPlayer, (state, payload) => ({
+    ...state,
+    planner: {
+      ...state.planner,
+      players: state.planner.players.concat(payload.player),
+      classComposition: getClassComposition(state.planner.players.concat(payload.player))
     }
   })),
   on(selectNewPlayerName, (state, payload) => ({
@@ -72,6 +100,12 @@ const reducer = createReducer(
     }
   }))
 );
+
+function getClassComposition(players: Player[]): { [key: string]: number } {
+  const comp = cloneDeep(initialClassComposition);
+  players.forEach(player => comp[player.classId]++);
+  return comp;
+}
 
 export function raidviewReducer(state: RaidviewState | undefined, action: Action): any {
   return reducer(state, action);

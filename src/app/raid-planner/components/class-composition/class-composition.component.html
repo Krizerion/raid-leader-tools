@@ -5,7 +5,7 @@
       <rv-player-card
         class="card-item"
         *ngFor="let class of classData"
-        [leftText]="'3'"
+        [leftText]="classCount[class.id].toString()"
         [centerText]="getClassNameById(class.id)"
         [className]="class.id"
       ></rv-player-card>
