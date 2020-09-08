@@ -21,3 +21,5 @@ export const selectNewPlayerSpec = createAction(
   '[Add player to roster] Choose new player spec',
   props<{ spec: string }>()
 );
+
+export const addNewPlayerNote = createAction('[Add player to roster] Add new player note', props<{ note: string }>());

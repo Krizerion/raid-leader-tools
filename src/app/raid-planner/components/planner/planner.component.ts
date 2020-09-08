@@ -48,13 +48,14 @@ export class PlannerComponent implements OnInit {
   }
 
   handleOk(data: AddPlayerComponent): void {
-    const { name, playerClass, spec } = this.newPlayerData;
+    const { name, playerClass, spec, note } = this.newPlayerData;
 
     const player = {
       name,
       classId: playerClass,
       specId: spec,
-      roleId: getRoleBySpecId(spec)
+      roleId: getRoleBySpecId(spec),
+      note
     };
     this.plannerApiService.addPlayer(player);
     this.store.dispatch(addPlayer({ player }));

@@ -3,7 +3,12 @@ import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/constants/add-player.co
 import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
 import { newPlayerData } from '@app/store/raidview';
-import { selectNewPlayerClass, selectNewPlayerName, selectNewPlayerSpec } from '@app/store/raidview/raidview.actions';
+import {
+  addNewPlayerNote,
+  selectNewPlayerClass,
+  selectNewPlayerName,
+  selectNewPlayerSpec
+} from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -16,6 +21,7 @@ import { Observable } from 'rxjs';
 })
 export class AddPlayerComponent implements OnInit {
   public name = '';
+  public note = '';
   public classIconData: SelectableIcon[] = cloneDeep(CLASS_DATA);
   public specIconData: SelectableIcon[] = [];
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
@@ -34,6 +40,10 @@ export class AddPlayerComponent implements OnInit {
 
   newNameSelected(event: string): void {
     this.store.dispatch(selectNewPlayerName({ name: event }));
+  }
+
+  newNoteSelected(event: string): void {
+    this.store.dispatch(addNewPlayerNote({ note: event }));
   }
 
   // ! TODO, BUGG!

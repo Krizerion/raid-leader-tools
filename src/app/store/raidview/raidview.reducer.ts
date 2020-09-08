@@ -1,5 +1,6 @@
 import { Player } from '@app/shared/models/planner.models';
 import {
+  addNewPlayerNote,
   addPlayer,
   resetNewPlayerData,
   selectNewPlayerClass,
@@ -34,7 +35,8 @@ export const initialState: RaidviewState = {
     addNewPlayer: {
       playerClass: '',
       spec: '',
-      name: ''
+      name: '',
+      note: ''
     }
   }
 };
@@ -48,7 +50,8 @@ const reducer = createReducer(
       addNewPlayer: {
         playerClass: '',
         spec: '',
-        name: ''
+        name: '',
+        note: ''
       }
     }
   })),
@@ -96,6 +99,16 @@ const reducer = createReducer(
       addNewPlayer: {
         ...state.planner.addNewPlayer,
         spec: payload.spec
+      }
+    }
+  })),
+  on(addNewPlayerNote, (state, payload) => ({
+    ...state,
+    planner: {
+      ...state.planner,
+      addNewPlayer: {
+        ...state.planner.addNewPlayer,
+        note: payload.note
       }
     }
   }))

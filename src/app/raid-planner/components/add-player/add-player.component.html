@@ -9,6 +9,9 @@
         (ngModelChange)="newNameSelected($event)"
       />
     </div>
+    <div class="col-md-12 player-name-container">
+      <input nz-input placeholder="Additional notes..." [ngModel]="note" (ngModelChange)="newNoteSelected($event)" />
+    </div>
     <div class="col-md-12 player-class-container">
       <rv-selectable-icon-group
         [iconData]="classIconData"

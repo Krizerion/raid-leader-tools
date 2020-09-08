@@ -9,6 +9,7 @@ export interface RaidviewState {
       name: string;
       playerClass: string;
       spec: string;
+      note: string;
     };
   };
 }
