@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "raidview": {
+      "hosting": {
+        "raidview": [
+          "raidview"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "raidview"
+  }
+}
