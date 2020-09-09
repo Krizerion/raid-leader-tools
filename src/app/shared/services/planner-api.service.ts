@@ -38,8 +38,97 @@ export class PlannerApiService {
       name: 'Octord',
       classId: Classes.PRIEST,
       specId: Specs.PRIEST_SHADOW,
-      roleId: Roles.RDPS,
-      note: 'Can play any spec, mostly sucks in raids'
+      roleId: Roles.RDPS
+    },
+    {
+      name: 'Rockish',
+      classId: Classes.DEATH_KNIGHT,
+      specId: Specs.DK_BLOOD,
+      roleId: Roles.TANK
+    },
+    {
+      name: 'Wshh',
+      classId: Classes.MONK,
+      specId: Specs.MONK_WIND,
+      roleId: Roles.MDPS
+    },
+    {
+      name: 'Racor',
+      classId: Classes.WARLOCK,
+      specId: Specs.WLOCK_AFF,
+      roleId: Roles.RDPS
+    },
+    {
+      name: 'Verkow',
+      classId: Classes.PALADIN,
+      specId: Specs.PALA_PROT,
+      roleId: Roles.TANK
+    },
+    {
+      name: 'Lyandria',
+      classId: Classes.SHAMAN,
+      specId: Specs.SHAM_RESTO,
+      roleId: Roles.HEALER
+    },
+    {
+      name: 'Silent',
+      classId: Classes.ROGUE,
+      specId: Specs.ROGUE_ASSA,
+      roleId: Roles.MDPS
+    },
+    {
+      name: 'Octord',
+      classId: Classes.PRIEST,
+      specId: Specs.PRIEST_SHADOW,
+      roleId: Roles.RDPS
+    },
+    {
+      name: 'Rockish',
+      classId: Classes.DEATH_KNIGHT,
+      specId: Specs.DK_BLOOD,
+      roleId: Roles.TANK
+    },
+    {
+      name: 'Wshh',
+      classId: Classes.MONK,
+      specId: Specs.MONK_WIND,
+      roleId: Roles.MDPS
+    },
+    {
+      name: 'Racor',
+      classId: Classes.WARLOCK,
+      specId: Specs.WLOCK_AFF,
+      roleId: Roles.RDPS
+    },
+    {
+      name: 'Verkow',
+      classId: Classes.PALADIN,
+      specId: Specs.PALA_PROT,
+      roleId: Roles.TANK
+    },
+    {
+      name: 'Lyandria',
+      classId: Classes.SHAMAN,
+      specId: Specs.SHAM_RESTO,
+      roleId: Roles.HEALER
+    },
+    {
+      name: 'Silent',
+      classId: Classes.ROGUE,
+      specId: Specs.ROGUE_ASSA,
+      roleId: Roles.MDPS
+    },
+    {
+      name: 'Octord',
+      classId: Classes.PRIEST,
+      specId: Specs.PRIEST_SHADOW,
+      roleId: Roles.RDPS
+    },
+    {
+      name: 'Rockish',
+      classId: Classes.DEATH_KNIGHT,
+      specId: Specs.DK_BLOOD,
+      roleId: Roles.TANK
     }
   ];
   constructor(private store: Store<AppState>) {}

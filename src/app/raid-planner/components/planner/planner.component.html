@@ -5,20 +5,34 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="all-cards-container">
-            <rv-player-card
-              *ngFor="let player of players$ | async"
-              nz-button
-              nzTooltipTitle="{{ player.note }}"
-              nzTooltipPlacement="topCenter"
-              nz-tooltip
-              [centerText]="player.name"
-              [topRightImgSrc]="getClassIconById(player.classId)"
-              [bottomRightImgSrc]="getSpecIconById(player.specId)"
-              [leftImageSrc]="getRoleIconById(player.roleId)"
-              [className]="player.classId"
-            ></rv-player-card>
-            <div class="empty-card-container">
+          <div class="all-cards-container" cdkDropListGroup>
+            <div
+              cdkDropList
+              [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              (cdkDropListDropped)="dropListDropped($event)"
+            ></div>
+            <div
+              cdkDropList
+              *ngFor="let player of players"
+              [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              (cdkDropListDropped)="dropListDropped($event)"
+            >
+              <div cdkDrag class="example-box" (cdkDragMoved)="dragMoved($event)">
+                <rv-player-card
+                  nz-button
+                  nzTooltipTitle="{{ player.note }}"
+                  nzTooltipPlacement="topCenter"
+                  nz-tooltip
+                  [centerText]="player.name"
+                  [topRightImgSrc]="getClassIconById(player.classId)"
+                  [bottomRightImgSrc]="getSpecIconById(player.specId)"
+                  [leftImageSrc]="getRoleIconById(player.roleId)"
+                  [className]="player.classId"
+                ></rv-player-card>
+              </div>
+            </div>
+
+            <div class="empty-card-container" *ngIf="players.length < 20">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />
               </div>
@@ -47,13 +61,40 @@
         </div>
         <div class="col-md-12">
           <h3>Backup:</h3>
-          <div class="all-cards-container">
-            <div class="empty-card-container">
+          <!-- TODO -->
+          <!-- <div class="all-cards-container" cdkDropListGroup>
+            <div
+              cdkDropList
+              [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              (cdkDropListDropped)="dropListDropped($event)"
+            ></div>
+            <div
+              cdkDropList
+              *ngFor="let player of players"
+              [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              (cdkDropListDropped)="dropListDropped($event)"
+            >
+              <div cdkDrag class="example-box" (cdkDragMoved)="dragMoved($event)">
+                <rv-player-card
+                  nz-button
+                  nzTooltipTitle="{{ player.note }}"
+                  nzTooltipPlacement="topCenter"
+                  nz-tooltip
+                  [centerText]="player.name"
+                  [topRightImgSrc]="getClassIconById(player.classId)"
+                  [bottomRightImgSrc]="getSpecIconById(player.specId)"
+                  [leftImageSrc]="getRoleIconById(player.roleId)"
+                  [className]="player.classId"
+                ></rv-player-card>
+              </div>
+            </div>
+
+            <div class="empty-card-container" *ngIf="players.length < 20">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

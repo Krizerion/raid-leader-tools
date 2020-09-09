@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HeaderComponent } from '@app/shared/components/header/header.component';
@@ -18,7 +19,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzAlertModule,
     NzModalModule,
     NzToolTipModule,
-    NzInputModule
+    NzInputModule,
+    DragDropModule
   ]
 })
 export class SharedModule {}
