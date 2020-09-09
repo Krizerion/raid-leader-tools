@@ -34,8 +34,6 @@ export class PlannerComponent implements OnInit {
       this.newPlayerData = data;
     });
 
-    this.rolesCount$.subscribe(data => console.log(data));
-
     this.players$.subscribe(data => this.store.dispatch(viewPlayersData({ players: cloneDeep(data) })));
   }
 

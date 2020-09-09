@@ -4,18 +4,36 @@
 
 .planner-container {
   .roles-container {
-    background-color: lightblue;
+    // background-color: lightblue;
+    background-color: rgba(173, 216, 230, 0.7);
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 10px;
+    padding: $spacing-xs 0;
     .role-count {
       display: inline-block;
       text-align: center;
+      font-weight: bold;
+    }
+    .role-icon {
+      width: 20px;
+      padding-right: $spacing-xxs;
+      padding-bottom: $spacing-xxs;
+    }
+    .tanks {
+      color: $tank;
+    }
+    .healers {
+      color: $healer;
+    }
+    .dps {
+      color: $dps;
     }
   }
   .all-cards-container {
     display: flex;
     flex-flow: row wrap;
+    padding-bottom: $spacing-m;
     .empty-card-container {
       display: inline-block;
 

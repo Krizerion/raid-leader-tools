@@ -1,15 +1,9 @@
 <div class="container planner-container">
   <div class="row">
     <div class="col-md-8">
-      <h3>Your team</h3>
+      <h3>Main team:</h3>
 
       <div class="row">
-        <div class="col-md-12 roles-container">
-          <span class="col-md-3 role-count">Tanks: {{ (rolesCount$ | async)['TANK'].toString() }}</span>
-          <span class="col-md-3 role-count">Healers: {{ (rolesCount$ | async)['HEALER'].toString() }}</span>
-          <span class="col-md-3 role-count">RDPS: {{ (rolesCount$ | async)['RDPS'].toString() }}</span>
-          <span class="col-md-3 role-count">MDPS: {{ (rolesCount$ | async)['MDPS'].toString() }}</span>
-        </div>
         <div class="col-md-12">
           <div class="all-cards-container">
             <rv-player-card
@@ -24,6 +18,36 @@
               [leftImageSrc]="getRoleIconById(player.roleId)"
               [className]="player.classId"
             ></rv-player-card>
+            <div class="empty-card-container">
+              <div class="empty-card" (click)="openAddNewPlayerModal()">
+                <img src="assets/images/other-icons/add-icon.png" alt="spec" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="roles-container">
+            <span class="col-lg-3 col-md-6 col-sm-12 role-count tanks"
+              ><img src="assets/images/role-icons/tank.png" alt="" class="role-icon" /> Tanks:
+              {{ (rolesCount$ | async)['TANK'].toString() }}</span
+            >
+            <span class="col-lg-3 col-md-6 col-sm-12 role-count healers"
+              ><img src="assets/images/role-icons/healer.png" alt="" class="role-icon" />Healers:
+              {{ (rolesCount$ | async)['HEALER'].toString() }}</span
+            >
+            <span class="col-lg-3 col-md-6 col-sm-12 role-count dps"
+              ><img src="assets/images/role-icons/rdps.png" alt="" class="role-icon" />RDPS:
+              {{ (rolesCount$ | async)['RDPS'].toString() }}</span
+            >
+            <span class="col-lg-3 col-md-6 col-sm-12 role-count dps"
+              ><img src="assets/images/role-icons/mdps.png" alt="" class="role-icon" />MDPS:
+              {{ (rolesCount$ | async)['MDPS'].toString() }}</span
+            >
+          </div>
+        </div>
+        <div class="col-md-12">
+          <h3>Backup:</h3>
+          <div class="all-cards-container">
             <div class="empty-card-container">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />

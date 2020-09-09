@@ -2,7 +2,12 @@
   <div class="left-icon icon" *ngIf="leftImageSrc">
     <img [src]="leftImageSrc" alt="left-icon" />
   </div>
-  <div *ngIf="leftText" class="left-text">{{ leftText }}</div>
+  <div *ngIf="leftText" class="left-text">
+    <svg>
+      <circle cx="10" cy="10" r="10" />
+      <text x="10" y="15">{{ leftText }}</text>
+    </svg>
+  </div>
   <div *ngIf="centerText" class="center-text">{{ centerText }}</div>
   <div class="right-icons">
     <div class="top-right-icon icon" *ngIf="topRightImgSrc">

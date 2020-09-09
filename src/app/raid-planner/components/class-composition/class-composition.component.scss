@@ -4,21 +4,24 @@
     .card-container {
       .left-text {
         font-size: 14px;
-        color: white;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         text-align: center;
-      }
-
-      .left-text {
-        height: 20px;
-        width: 20px;
-        border: 1px solid black;
         text-shadow: none;
         color: black;
-        background-color: white;
-        border-radius: 20px;
         padding: 0 5px;
         font-weight: bold;
+        svg {
+          height: 20px;
+          width: 20px;
+          circle {
+            stroke: black;
+            stroke-width: 1;
+            fill: white;
+          }
+          text {
+            text-anchor: middle;
+            stroke-width: 1px;
+          }
+        }
       }
 
       .center-text {
