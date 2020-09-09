@@ -18,7 +18,7 @@ export class PlannerApiService {
     },
     {
       name: 'Verkow',
-      classId: Classes.DEATH_KNIGHT,
+      classId: Classes.PALADIN,
       specId: Specs.PALA_PROT,
       roleId: Roles.TANK
     },

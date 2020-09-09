@@ -17,14 +17,8 @@ import { Observable } from 'rxjs';
 export class ClassCompositionComponent {
   public classData: SelectableIcon[] = cloneDeep(CLASS_DATA);
   public classCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getClassComp));
-  public classCount: { [key: string]: number } = {};
 
-  constructor(private store: Store<AppState>) {
-    this.classCount$.subscribe(data => {
-      console.log(data);
-      this.classCount = data;
-    });
-  }
+  constructor(private store: Store<AppState>) {}
 
   getBackgroundColor(className: string): string {
     return getBackgroundColorByClassName(className);

@@ -27,11 +27,19 @@ export const initialClassComposition: { [key: string]: number } = {
   WARRIOR: 0
 };
 
+export const initialRoleComposition: { [key: string]: number } = {
+  TANK: 0,
+  HEALER: 0,
+  MDPS: 0,
+  RDPS: 0
+};
+
 export const initialState: RaidviewState = {
   isLoading: false,
   planner: {
     players: [],
     classComposition: cloneDeep(initialClassComposition),
+    roleComposition: cloneDeep(initialRoleComposition),
     addNewPlayer: {
       playerClass: '',
       spec: '',
@@ -60,6 +68,7 @@ const reducer = createReducer(
     planner: {
       ...state.planner,
       classComposition: getClassComposition(payload.players),
+      roleComposition: getRolesComposition(payload.players),
       players: payload.players
     }
   })),
@@ -68,6 +77,7 @@ const reducer = createReducer(
     planner: {
       ...state.planner,
       players: state.planner.players.concat(payload.player),
+      roleComposition: getRolesComposition(state.planner.players.concat(payload.player)),
       classComposition: getClassComposition(state.planner.players.concat(payload.player))
     }
   })),
@@ -117,6 +127,12 @@ const reducer = createReducer(
 function getClassComposition(players: Player[]): { [key: string]: number } {
   const comp = cloneDeep(initialClassComposition);
   players.forEach(player => comp[player.classId]++);
+  return comp;
+}
+
+function getRolesComposition(players: Player[]): { [key: string]: number } {
+  const comp = cloneDeep(initialRoleComposition);
+  players.forEach(player => comp[player.roleId]++);
   return comp;
 }
 

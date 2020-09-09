@@ -4,6 +4,12 @@
       <h3>Your team</h3>
 
       <div class="row">
+        <div class="col-md-12 roles-container">
+          <span class="col-md-3 role-count">Tanks: {{ (rolesCount$ | async)['TANK'].toString() }}</span>
+          <span class="col-md-3 role-count">Healers: {{ (rolesCount$ | async)['HEALER'].toString() }}</span>
+          <span class="col-md-3 role-count">RDPS: {{ (rolesCount$ | async)['RDPS'].toString() }}</span>
+          <span class="col-md-3 role-count">MDPS: {{ (rolesCount$ | async)['MDPS'].toString() }}</span>
+        </div>
         <div class="col-md-12">
           <div class="all-cards-container">
             <rv-player-card

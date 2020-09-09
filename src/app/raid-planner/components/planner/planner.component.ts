@@ -5,7 +5,7 @@ import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
-import { newPlayerData } from '@app/store/raidview';
+import { getRolesComp, newPlayerData } from '@app/store/raidview';
 import { addPlayer, resetNewPlayerData, viewPlayersData } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 export class PlannerComponent implements OnInit {
   public players$: Observable<Player[]> = this.plannerApiService.getPlayers();
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
+  public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
   public newPlayerData: any;
   public newPlayerRole = '';
   constructor(
@@ -32,6 +33,8 @@ export class PlannerComponent implements OnInit {
     this.newPlayerData$.subscribe(data => {
       this.newPlayerData = data;
     });
+
+    this.rolesCount$.subscribe(data => console.log(data));
 
     this.players$.subscribe(data => this.store.dispatch(viewPlayersData({ players: cloneDeep(data) })));
   }

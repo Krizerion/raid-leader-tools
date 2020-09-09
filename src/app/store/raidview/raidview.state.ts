@@ -5,6 +5,7 @@ export interface RaidviewState {
   planner: {
     players: Player[];
     classComposition: { [key: string]: number };
+    roleComposition: { [key: string]: number };
     addNewPlayer: {
       name: string;
       playerClass: string;

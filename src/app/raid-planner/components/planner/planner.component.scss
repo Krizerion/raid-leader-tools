@@ -3,6 +3,16 @@
 @import 'src/styles/theme/_spacings';
 
 .planner-container {
+  .roles-container {
+    background-color: lightblue;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    .role-count {
+      display: inline-block;
+      text-align: center;
+    }
+  }
   .all-cards-container {
     display: flex;
     flex-flow: row wrap;
