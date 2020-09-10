@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Classes, Roles, Specs } from '@app/shared/constants/classes-specs-roles.constants';
 import { Player } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
+import { setRosterDataInStore } from '@app/store/raidview';
 import { Store } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -11,138 +13,43 @@ import { Observable, of } from 'rxjs';
 export class PlannerApiService {
   private players: Player[] = [
     {
+      id: 1,
       name: 'Racor',
       classId: Classes.WARLOCK,
       specId: Specs.WLOCK_AFF,
       roleId: Roles.RDPS
     },
     {
+      id: 2,
       name: 'Verkow',
       classId: Classes.PALADIN,
       specId: Specs.PALA_PROT,
       roleId: Roles.TANK
     },
     {
+      id: 3,
       name: 'Lyandria',
       classId: Classes.SHAMAN,
       specId: Specs.SHAM_RESTO,
       roleId: Roles.HEALER
     },
     {
+      id: 4,
       name: 'Silent',
       classId: Classes.ROGUE,
       specId: Specs.ROGUE_ASSA,
       roleId: Roles.MDPS
-    },
-    {
-      name: 'Octord',
-      classId: Classes.PRIEST,
-      specId: Specs.PRIEST_SHADOW,
-      roleId: Roles.RDPS
-    },
-    {
-      name: 'Rockish',
-      classId: Classes.DEATH_KNIGHT,
-      specId: Specs.DK_BLOOD,
-      roleId: Roles.TANK
-    },
-    {
-      name: 'Wshh',
-      classId: Classes.MONK,
-      specId: Specs.MONK_WIND,
-      roleId: Roles.MDPS
-    },
-    {
-      name: 'Racor',
-      classId: Classes.WARLOCK,
-      specId: Specs.WLOCK_AFF,
-      roleId: Roles.RDPS
-    },
-    {
-      name: 'Verkow',
-      classId: Classes.PALADIN,
-      specId: Specs.PALA_PROT,
-      roleId: Roles.TANK
-    },
-    {
-      name: 'Lyandria',
-      classId: Classes.SHAMAN,
-      specId: Specs.SHAM_RESTO,
-      roleId: Roles.HEALER
-    },
-    {
-      name: 'Silent',
-      classId: Classes.ROGUE,
-      specId: Specs.ROGUE_ASSA,
-      roleId: Roles.MDPS
-    },
-    {
-      name: 'Octord',
-      classId: Classes.PRIEST,
-      specId: Specs.PRIEST_SHADOW,
-      roleId: Roles.RDPS
-    },
-    {
-      name: 'Rockish',
-      classId: Classes.DEATH_KNIGHT,
-      specId: Specs.DK_BLOOD,
-      roleId: Roles.TANK
-    },
-    {
-      name: 'Wshh',
-      classId: Classes.MONK,
-      specId: Specs.MONK_WIND,
-      roleId: Roles.MDPS
-    },
-    {
-      name: 'Racor',
-      classId: Classes.WARLOCK,
-      specId: Specs.WLOCK_AFF,
-      roleId: Roles.RDPS
-    },
-    {
-      name: 'Verkow',
-      classId: Classes.PALADIN,
-      specId: Specs.PALA_PROT,
-      roleId: Roles.TANK
-    },
-    {
-      name: 'Lyandria',
-      classId: Classes.SHAMAN,
-      specId: Specs.SHAM_RESTO,
-      roleId: Roles.HEALER
-    },
-    {
-      name: 'Silent',
-      classId: Classes.ROGUE,
-      specId: Specs.ROGUE_ASSA,
-      roleId: Roles.MDPS
-    },
-    {
-      name: 'Octord',
-      classId: Classes.PRIEST,
-      specId: Specs.PRIEST_SHADOW,
-      roleId: Roles.RDPS
-    },
-    {
-      name: 'Rockish',
-      classId: Classes.DEATH_KNIGHT,
-      specId: Specs.DK_BLOOD,
-      roleId: Roles.TANK
     }
   ];
   constructor(private store: Store<AppState>) {}
 
   getPlayers(): Observable<Player[]> {
+    this.store.dispatch(setRosterDataInStore({ players: cloneDeep(this.players) }));
     return of(this.players);
   }
 
-  editPlayer(player: Player): void {
-    this.players[0] = player;
-  }
+  editPlayer(player: Player): void {}
 
   // TODO: dispatch new player add??
-  addPlayer(player: Player): void {
-    this.players.push(player);
-  }
+  addPlayer(player: Player): void {}
 }

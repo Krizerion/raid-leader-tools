@@ -14,6 +14,7 @@
             <div
               cdkDropList
               *ngFor="let player of players"
+              (click)="openEditPlayerModal(player)"
               [cdkDropListEnterPredicate]="dropListEnterPredicate"
               (cdkDropListDropped)="dropListDropped($event)"
             >
@@ -28,7 +29,6 @@
                   [bottomRightImgSrc]="getSpecIconById(player.specId)"
                   [leftImageSrc]="getRoleIconById(player.roleId)"
                   [className]="player.classId"
-                  (click)="openEditPlayerModal(player)"
                 ></rv-player-card>
               </div>
             </div>

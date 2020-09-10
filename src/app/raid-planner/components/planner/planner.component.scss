@@ -40,6 +40,7 @@
 
       .empty-card {
         @include player-card;
+        height: 51px;
         justify-content: center;
         transition: 0.3s;
         -webkit-touch-callout: none; /* iOS Safari */

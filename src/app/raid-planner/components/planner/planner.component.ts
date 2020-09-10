@@ -7,8 +7,8 @@ import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
-import { getRolesComp, newPlayerData } from '@app/store/raidview';
-import { addPlayer, resetNewPlayerData, viewPlayersData } from '@app/store/raidview/raidview.actions';
+import { getRolesComp, getRoster } from '@app/store/raidview';
+import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -20,11 +20,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./planner.component.scss']
 })
 export class PlannerComponent implements OnInit, AfterViewInit {
-  public players$: Observable<Player[]> = this.plannerApiService.getPlayers();
+  public players$: Observable<Player[]> = this.store.pipe(select(getRoster));
   public players: Player[] = [];
-  public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
-  public newPlayerData: any;
+
   public newPlayerRole = '';
 
   @ViewChild(CdkDropListGroup) listGroup: CdkDropListGroup<CdkDropList>;
@@ -48,25 +47,21 @@ export class PlannerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.newPlayerData$.subscribe(data => {
-      this.newPlayerData = data;
-    });
+    this.plannerApiService.getPlayers();
 
     this.players$.subscribe(data => {
-      this.players = data;
-      this.store.dispatch(viewPlayersData({ players: cloneDeep(data) }));
+      this.players = cloneDeep(data);
     });
   }
 
-  ngAfterViewInit() {
-    let phElement = this.placeholder.element.nativeElement;
+  ngAfterViewInit(): void {
+    const phElement = this.placeholder.element.nativeElement;
 
     phElement.style.display = 'none';
     phElement.parentElement.removeChild(phElement);
   }
 
   openAddNewPlayerModal(): void {
-    this.store.dispatch(resetNewPlayerData());
     this.modal.create({
       nzTitle: 'Add a new player',
       nzContent: AddPlayerComponent,
@@ -77,7 +72,6 @@ export class PlannerComponent implements OnInit, AfterViewInit {
   }
 
   openEditPlayerModal(player: Player): void {
-    this.store.dispatch(resetNewPlayerData());
     this.modal.create({
       nzTitle: 'Edit player',
       nzContent: AddPlayerComponent,
@@ -88,22 +82,22 @@ export class PlannerComponent implements OnInit, AfterViewInit {
         name: player.name,
         selectedClass: player.classId,
         selectedSpec: player.specId,
-        note: player.note
+        note: player.note,
+        id: player.id
       }
     });
   }
 
   handleOk(data: AddPlayerComponent): void {
-    const { name, playerClass, spec, note } = this.newPlayerData;
-
     const player = {
-      name,
-      classId: playerClass,
-      specId: spec,
-      roleId: getRoleBySpecId(spec),
-      note
+      name: data.name,
+      classId: data.selectedClass,
+      specId: data.selectedSpec,
+      roleId: getRoleBySpecId(data.selectedSpec),
+      note: data.note,
+      id: data.id
     };
-    this.plannerApiService.addPlayer(player);
+    // this.plannerApiService.addPlayer(player);
     this.store.dispatch(addPlayer({ player }));
   }
 
@@ -113,14 +107,14 @@ export class PlannerComponent implements OnInit, AfterViewInit {
       classId: data.selectedClass,
       specId: data.selectedSpec,
       roleId: getRoleBySpecId(data.selectedSpec),
-      note: data.note
+      note: data.note,
+      id: data.id
     };
-    this.plannerApiService.editPlayer(player);
-    // this.store.dispatch(addPlayer({ player }));
+    this.store.dispatch(editPlayer({ player }));
   }
 
   handleCancel(): void {
-    this.store.dispatch(resetNewPlayerData());
+    this.modal.closeAll();
   }
 
   getClassIconById(id: string): string {
@@ -165,6 +159,7 @@ export class PlannerComponent implements OnInit, AfterViewInit {
 
     if (this.sourceIndex !== this.targetIndex) {
       moveItemInArray(this.players, this.sourceIndex, this.targetIndex);
+      this.store.dispatch(setRosterDataInStore({ players: cloneDeep(this.players) }));
     }
   }
 

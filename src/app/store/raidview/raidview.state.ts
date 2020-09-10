@@ -4,13 +4,5 @@ export interface RaidviewState {
   isLoading: boolean;
   planner: {
     players: Player[];
-    classComposition: { [key: string]: number };
-    roleComposition: { [key: string]: number };
-    addNewPlayer: {
-      name: string;
-      playerClass: string;
-      spec: string;
-      note: string;
-    };
   };
 }
