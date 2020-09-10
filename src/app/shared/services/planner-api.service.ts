@@ -137,6 +137,10 @@ export class PlannerApiService {
     return of(this.players);
   }
 
+  editPlayer(player: Player): void {
+    this.players[0] = player;
+  }
+
   // TODO: dispatch new player add??
   addPlayer(player: Player): void {
     this.players.push(player);

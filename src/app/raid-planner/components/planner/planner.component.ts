@@ -76,6 +76,23 @@ export class PlannerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  openEditPlayerModal(player: Player): void {
+    this.store.dispatch(resetNewPlayerData());
+    this.modal.create({
+      nzTitle: 'Edit player',
+      nzContent: AddPlayerComponent,
+      nzOkDisabled: true,
+      nzOnOk: this.handleOkEdit.bind(this),
+      nzOnCancel: this.handleCancel.bind(this),
+      nzComponentParams: {
+        name: player.name,
+        selectedClass: player.classId,
+        selectedSpec: player.specId,
+        note: player.note
+      }
+    });
+  }
+
   handleOk(data: AddPlayerComponent): void {
     const { name, playerClass, spec, note } = this.newPlayerData;
 
@@ -88,6 +105,18 @@ export class PlannerComponent implements OnInit, AfterViewInit {
     };
     this.plannerApiService.addPlayer(player);
     this.store.dispatch(addPlayer({ player }));
+  }
+
+  handleOkEdit(data: AddPlayerComponent): void {
+    const player = {
+      name: data.name,
+      classId: data.selectedClass,
+      specId: data.selectedSpec,
+      roleId: getRoleBySpecId(data.selectedSpec),
+      note: data.note
+    };
+    this.plannerApiService.editPlayer(player);
+    // this.store.dispatch(addPlayer({ player }));
   }
 
   handleCancel(): void {

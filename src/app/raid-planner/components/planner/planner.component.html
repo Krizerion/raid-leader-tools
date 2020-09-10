@@ -28,6 +28,7 @@
                   [bottomRightImgSrc]="getSpecIconById(player.specId)"
                   [leftImageSrc]="getRoleIconById(player.roleId)"
                   [className]="player.classId"
+                  (click)="openEditPlayerModal(player)"
                 ></rv-player-card>
               </div>
             </div>

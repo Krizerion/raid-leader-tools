@@ -22,6 +22,8 @@ import { Observable } from 'rxjs';
 export class AddPlayerComponent implements OnInit {
   public name = '';
   public note = '';
+  public selectedClass = '';
+  public selectedSpec = '';
   public classIconData: SelectableIcon[] = cloneDeep(CLASS_DATA);
   public specIconData: SelectableIcon[] = [];
   public newPlayerData$: Observable<any> = this.store.pipe(select(newPlayerData));
@@ -29,6 +31,15 @@ export class AddPlayerComponent implements OnInit {
   constructor(private store: Store<AppState>, private modalRef: NzModalRef) {}
 
   ngOnInit(): void {
+    // debugger;
+    // console.log(this.modalRef);
+    if (this.selectedClass && this.selectedSpec) {
+      this.newNameSelected(this.name);
+      this.newNoteSelected(this.note);
+      this.newClassSelected({ id: this.selectedClass, selected: true });
+      this.newSpecSelected({ id: this.selectedSpec, selected: true });
+    }
+
     this.newPlayerData$.subscribe(data => {
       if (data.name.length > 0 && data.name.length <= 12 && data.playerClass && data.spec) {
         this.modalRef.updateConfig({ nzOkDisabled: false });
@@ -52,9 +63,11 @@ export class AddPlayerComponent implements OnInit {
       this.select(this.classIconData, event);
       this.store.dispatch(selectNewPlayerClass({ playerClass: event.id }));
       this.specIconData = cloneDeep(SPEC_DATA[event.id]) || [];
+      this.selectedClass = event.id;
     } else {
       this.store.dispatch(selectNewPlayerClass({ playerClass: '' }));
       this.specIconData = [];
+      this.selectedClass = '';
     }
   }
 
@@ -62,8 +75,10 @@ export class AddPlayerComponent implements OnInit {
     if (event.selected) {
       this.select(this.specIconData, event);
       this.store.dispatch(selectNewPlayerSpec({ spec: event.id }));
+      this.selectedSpec = event.id;
     } else {
       this.store.dispatch(selectNewPlayerSpec({ spec: '' }));
+      this.selectedSpec = '';
     }
   }
 
