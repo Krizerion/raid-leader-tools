@@ -1,6 +1,6 @@
 import { CdkDrag, CdkDragMove, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddPlayerComponent } from '@app/raid-planner/components/add-player/add-player.component';
 import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
 import { Player } from '@app/shared/models/planner.models';
@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
   templateUrl: './planner.component.html',
   styleUrls: ['./planner.component.scss']
 })
-export class PlannerComponent implements OnInit, AfterViewInit {
+export class PlannerComponent implements OnInit {
   public players$: Observable<Player[]> = this.store.pipe(select(getRoster));
   public players: Player[] = [];
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
@@ -47,18 +47,13 @@ export class PlannerComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.plannerApiService.getPlayers();
+    if (this.players.length === 0) {
+      this.plannerApiService.getPlayers();
+    }
 
     this.players$.subscribe(data => {
       this.players = cloneDeep(data);
     });
-  }
-
-  ngAfterViewInit(): void {
-    const phElement = this.placeholder.element.nativeElement;
-
-    phElement.style.display = 'none';
-    phElement.parentElement.removeChild(phElement);
   }
 
   openAddNewPlayerModal(): void {

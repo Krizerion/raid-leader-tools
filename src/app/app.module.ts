@@ -12,11 +12,18 @@ import { AppComponent } from '@app/app.component';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { reducers } from '@app/store';
-import { StoreModule } from '@ngrx/store';
+import { MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 registerLocaleData(en);
+
+export function localStorageSyncReducer(rootReducer: any) {
+  return localStorageSync({ keys: ['raidview'], rehydrate: true })(rootReducer);
+}
+
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, AboutComponent],
@@ -27,7 +34,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
