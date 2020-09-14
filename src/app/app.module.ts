@@ -2,9 +2,14 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { environment } from '@app/../environments/environment';
 import { AboutComponent } from '@app/about/about.component';
 import { AppRoutingModule } from '@app/app-routing.module';
@@ -34,7 +39,21 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    RouterModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyAiMG2CbRpdEEqvKo34W1g2gFlNTcmjfHA',
+      authDomain: 'raidview.firebaseapp.com',
+      databaseURL: 'https://raidview.firebaseio.com',
+      projectId: 'raidview',
+      storageBucket: 'raidview.appspot.com',
+      messagingSenderId: '702544996178',
+      appId: '1:702544996178:web:d9b734ae6e10e81a053c8b',
+      measurementId: 'G-DNY7WH71N8'
+    }),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    StoreModule.forRoot(reducers, {}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
