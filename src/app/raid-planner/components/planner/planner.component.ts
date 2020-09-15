@@ -34,7 +34,7 @@ export class PlannerComponent implements OnInit {
   public source: CdkDropList;
   public sourceIndex: number;
   public dragIndex: number;
-  public activeContainer;
+  public activeContainer: CdkDropList<any>;
 
   constructor(
     private modal: NzModalService,
@@ -188,6 +188,7 @@ export class PlannerComponent implements OnInit {
     this.target = drop;
 
     phElement.style.display = '';
+    phElement.style.border = '1px dashed black';
     dropElement.parentElement.insertBefore(phElement, dropIndex > dragIndex ? dropElement.nextSibling : dropElement);
 
     // This was here from the example, doesnt work, so I commented it
