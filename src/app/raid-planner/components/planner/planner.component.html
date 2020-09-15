@@ -5,21 +5,22 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="all-cards-container" cdkDropListGroup>
-            <div
-              cdkDropList
-              [cdkDropListEnterPredicate]="dropListEnterPredicate"
-              (cdkDropListDropped)="dropListDropped($event)"
-            ></div>
-            <div
-              cdkDropList
+          <div class="all-cards-container" dragula="VAMPIRES" [(dragulaModel)]="players">
+            <rv-player-card
+              class="vamp"
               *ngFor="let player of players"
-              (click)="openEditPlayerModal(player)"
-              [cdkDropListEnterPredicate]="dropListEnterPredicate"
-              (cdkDropListDropped)="dropListDropped($event)"
-            >
-              <div cdkDrag class="example-box" (cdkDragMoved)="dragMoved($event)">
-                <rv-player-card
+              nz-button
+              nzTooltipTitle="{{ player.note }}"
+              nzTooltipPlacement="topCenter"
+              nz-tooltip
+              [centerText]="player.name"
+              [topRightImgSrc]="getClassIconById(player.classId)"
+              [bottomRightImgSrc]="getSpecIconById(player.specId)"
+              [leftImageSrc]="getRoleIconById(player.roleId)"
+              [className]="player.classId"
+            ></rv-player-card>
+
+            <!-- <rv-player-card
                   nz-button
                   nzTooltipTitle="{{ player.note }}"
                   nzTooltipPlacement="topCenter"
@@ -29,15 +30,38 @@
                   [bottomRightImgSrc]="getSpecIconById(player.specId)"
                   [leftImageSrc]="getRoleIconById(player.roleId)"
                   [className]="player.classId"
-                ></rv-player-card>
-              </div>
-            </div>
+                ></rv-player-card> -->
 
-            <div class="empty-card-container" *ngIf="players.length < 20">
+            <!-- <ng-container *ngFor="let player of players; let i = index">
+              <div
+                class="categories-item"
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                [cdkDropListData]="{ item: player, index: i }"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div class="inner" cdkDrag>
+                  <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                  <rv-player-card
+                    nz-button
+                    nzTooltipTitle="{{ player.note }}"
+                    nzTooltipPlacement="topCenter"
+                    nz-tooltip
+                    [centerText]="player.name"
+                    [topRightImgSrc]="getClassIconById(player.classId)"
+                    [bottomRightImgSrc]="getSpecIconById(player.specId)"
+                    [leftImageSrc]="getRoleIconById(player.roleId)"
+                    [className]="player.classId"
+                  ></rv-player-card>
+                </div>
+              </div>
+            </ng-container> -->
+
+            <!-- <div class="empty-card-container" *ngIf="players.length < 20">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-md-12">
@@ -63,39 +87,27 @@
         <div class="col-md-12">
           <h3>Backup:</h3>
           <!-- TODO -->
-          <!-- <div class="all-cards-container" cdkDropListGroup>
-            <div
-              cdkDropList
-              [cdkDropListEnterPredicate]="dropListEnterPredicate"
-              (cdkDropListDropped)="dropListDropped($event)"
-            ></div>
-            <div
-              cdkDropList
-              *ngFor="let player of players"
-              [cdkDropListEnterPredicate]="dropListEnterPredicate"
-              (cdkDropListDropped)="dropListDropped($event)"
-            >
-              <div cdkDrag class="example-box" (cdkDragMoved)="dragMoved($event)">
-                <rv-player-card
-                  nz-button
-                  nzTooltipTitle="{{ player.note }}"
-                  nzTooltipPlacement="topCenter"
-                  nz-tooltip
-                  [centerText]="player.name"
-                  [topRightImgSrc]="getClassIconById(player.classId)"
-                  [bottomRightImgSrc]="getSpecIconById(player.specId)"
-                  [leftImageSrc]="getRoleIconById(player.roleId)"
-                  [className]="player.classId"
-                ></rv-player-card>
-              </div>
-            </div>
+          <div class="all-cards-container" dragula="VAMPIRES" [(dragulaModel)]="backup">
+            <rv-player-card
+              class="vamp"
+              *ngFor="let player of backup"
+              nz-button
+              nzTooltipTitle="{{ player.note }}"
+              nzTooltipPlacement="topCenter"
+              nz-tooltip
+              [centerText]="player.name"
+              [topRightImgSrc]="getClassIconById(player.classId)"
+              [bottomRightImgSrc]="getSpecIconById(player.specId)"
+              [leftImageSrc]="getRoleIconById(player.roleId)"
+              [className]="player.classId"
+            ></rv-player-card>
 
             <div class="empty-card-container" *ngIf="players.length < 20">
               <div class="empty-card" (click)="openAddNewPlayerModal()">
                 <img src="assets/images/other-icons/add-icon.png" alt="spec" />
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

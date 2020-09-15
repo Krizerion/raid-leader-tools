@@ -40,6 +40,27 @@ export class PlannerApiService {
       specId: Specs.ROGUE_ASSA,
       roleId: Roles.MDPS
     }
+    // {
+    //   id: 5,
+    //   name: 'Verkow',
+    //   classId: Classes.PALADIN,
+    //   specId: Specs.PALA_PROT,
+    //   roleId: Roles.TANK
+    // },
+    // {
+    //   id: 6,
+    //   name: 'Lyandria',
+    //   classId: Classes.SHAMAN,
+    //   specId: Specs.SHAM_RESTO,
+    //   roleId: Roles.HEALER
+    // },
+    // {
+    //   id: 7,
+    //   name: 'Silent',
+    //   classId: Classes.ROGUE,
+    //   specId: Specs.ROGUE_ASSA,
+    //   roleId: Roles.MDPS
+    // }
   ];
   constructor(private store: Store<AppState>) {}
 

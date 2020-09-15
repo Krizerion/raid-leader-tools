@@ -8,9 +8,10 @@ import { SelectableIconGroupComponent } from '@app/raid-planner/components/selec
 import { SelectableIconComponent } from '@app/raid-planner/components/selectable-icon/selectable-icon.component';
 import { RaidPlannerRoutingModule } from '@app/raid-planner/raid-planner.routing';
 import { SharedModule } from '@app/shared/shared.module';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
-  imports: [CommonModule, RaidPlannerRoutingModule, SharedModule, FormsModule],
+  imports: [CommonModule, RaidPlannerRoutingModule, SharedModule, FormsModule, DragulaModule],
   declarations: [
     PlannerComponent,
     AddPlayerComponent,
