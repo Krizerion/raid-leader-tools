@@ -21,6 +21,7 @@ import { MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(en);
 
@@ -54,7 +55,8 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     AngularFireAuthModule,
     AngularFireStorageModule,
     StoreModule.forRoot(reducers, {}),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
