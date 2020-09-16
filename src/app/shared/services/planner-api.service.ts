@@ -81,13 +81,13 @@ export class PlannerApiService {
       id: 24,
       name: 'Slavi',
       classId: Classes.PALADIN,
-      specId: Specs.PALA_HOLY,
-      roleId: Roles.HEALER
+      specId: '',
+      roleId: ''
     }
   ];
   constructor(private store: Store<AppState>) {}
 
-  getPlayers() {
+  getPlayers(): void {
     this.store.dispatch(setRosterDataInStore({ players: cloneDeep(this.players), backup: cloneDeep(this.backup) }));
     // return of(this.players);
   }

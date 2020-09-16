@@ -1,28 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddPlayerComponent } from '@app/raid-planner/components/add-player/add-player.component';
 import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
 import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
-import { getRolesComp, getRoster } from '@app/store/raidview';
+import { getRolesComp, getRoster, playersWithoutSelectedSpec } from '@app/store/raidview';
 import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DragulaService } from 'ng2-dragula';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'rv-planner',
   templateUrl: './planner.component.html',
   styleUrls: ['./planner.component.scss']
 })
-export class PlannerComponent implements OnInit {
+export class PlannerComponent implements OnInit, OnDestroy {
   public allPlayers$: Observable<any> = this.store.pipe(select(getRoster));
   public players: Player[] = [];
   public backup: Player[] = [];
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
+
+  public playersWithoutSelectedSpec$: Observable<number> = this.store.pipe(select(playersWithoutSelectedSpec));
+  private destroy$ = new Subject();
 
   public newPlayerRole = '';
 
@@ -36,25 +40,28 @@ export class PlannerComponent implements OnInit {
       revertOnSpill: true
     });
 
-    this.dragulaService.dropModel('roster').subscribe(args => {
-      if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
-        this.store.dispatch(
-          setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
-        );
-      } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
-        this.store.dispatch(
-          setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
-        );
-      } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
-        this.store.dispatch(
-          setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
-        );
-      } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
-        this.store.dispatch(
-          setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
-        );
-      }
-    });
+    this.dragulaService
+      .dropModel('roster')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(args => {
+        if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
+          this.store.dispatch(
+            setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
+          );
+        } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
+          this.store.dispatch(
+            setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
+          );
+        } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
+          this.store.dispatch(
+            setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
+          );
+        } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
+          this.store.dispatch(
+            setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
+          );
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -62,7 +69,7 @@ export class PlannerComponent implements OnInit {
       this.plannerApiService.getPlayers();
     }
 
-    this.allPlayers$.subscribe(data => {
+    this.allPlayers$.pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.players = cloneDeep(data.players);
       this.backup = cloneDeep(data.backup);
     });
@@ -134,5 +141,9 @@ export class PlannerComponent implements OnInit {
 
   getRoleIconById(id: string): string {
     return ROLES_IMG[id];
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 }
