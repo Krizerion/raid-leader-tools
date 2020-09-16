@@ -4,5 +4,6 @@ export interface RaidviewState {
   isLoading: boolean;
   planner: {
     players: Player[];
+    backup: Player[];
   };
 }

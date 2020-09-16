@@ -1,11 +1,13 @@
 import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
 import { RaidviewState } from '@app/store/raidview/raidview.state';
 import { Action, createReducer, on } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
 
 export const initialState: RaidviewState = {
   isLoading: false,
   planner: {
-    players: []
+    players: [],
+    backup: []
   }
 };
 
@@ -15,7 +17,8 @@ const reducer = createReducer(
     ...state,
     planner: {
       ...state.planner,
-      players: payload.players
+      players: cloneDeep(payload.players),
+      backup: cloneDeep(payload.backup)
     }
   })),
   on(addPlayer, (state, payload) => {
