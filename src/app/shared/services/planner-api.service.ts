@@ -5,7 +5,6 @@ import { AppState } from '@app/store';
 import { setRosterDataInStore } from '@app/store/raidview';
 import { Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +39,57 @@ export class PlannerApiService {
       specId: Specs.ROGUE_ASSA,
       roleId: Roles.MDPS
     }
+    // {
+    //   id: 5,
+    //   name: 'Verkow',
+    //   classId: Classes.PALADIN,
+    //   specId: Specs.PALA_PROT,
+    //   roleId: Roles.TANK
+    // },
+    // {
+    //   id: 6,
+    //   name: 'Lyandria',
+    //   classId: Classes.SHAMAN,
+    //   specId: Specs.SHAM_RESTO,
+    //   roleId: Roles.HEALER
+    // },
+    // {
+    //   id: 7,
+    //   name: 'Silent',
+    //   classId: Classes.ROGUE,
+    //   specId: Specs.ROGUE_ASSA,
+    //   roleId: Roles.MDPS
+    // }
+  ];
+
+  private backup: Player[] = [
+    {
+      id: 22,
+      name: 'Rockish',
+      classId: Classes.DEATH_KNIGHT,
+      specId: Specs.DK_BLOOD,
+      roleId: Roles.TANK
+    },
+    {
+      id: 23,
+      name: 'Wshh',
+      classId: Classes.MONK,
+      specId: Specs.MONK_WIND,
+      roleId: Roles.MDPS
+    },
+    {
+      id: 24,
+      name: 'Slavi',
+      classId: Classes.PALADIN,
+      specId: '',
+      roleId: ''
+    }
   ];
   constructor(private store: Store<AppState>) {}
 
-  getPlayers(): Observable<Player[]> {
-    this.store.dispatch(setRosterDataInStore({ players: cloneDeep(this.players) }));
-    return of(this.players);
+  getPlayers(): void {
+    this.store.dispatch(setRosterDataInStore({ players: cloneDeep(this.players), backup: cloneDeep(this.backup) }));
+    // return of(this.players);
   }
 
   editPlayer(player: Player): void {}

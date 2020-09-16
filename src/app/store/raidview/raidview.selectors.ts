@@ -26,7 +26,7 @@ export const initialRoleComposition: { [key: string]: number } = {
   RDPS: 0
 };
 
-export const getRoster = createSelector(raidviewState, state => state.planner.players);
+export const getRoster = createSelector(raidviewState, state => state.planner);
 export const getClassComp = createSelector(raidviewState, state => {
   const comp = cloneDeep(initialClassComposition);
   state.planner.players.forEach(player => comp[player.classId]++);
@@ -36,4 +36,8 @@ export const getRolesComp = createSelector(raidviewState, state => {
   const comp = cloneDeep(initialRoleComposition);
   state.planner.players.forEach(player => comp[player.roleId]++);
   return comp;
+});
+export const playersWithoutSelectedSpec = createSelector(raidviewState, state => {
+  const mainComp = cloneDeep(state.planner.players);
+  return mainComp.filter(player => player.specId === '').length;
 });

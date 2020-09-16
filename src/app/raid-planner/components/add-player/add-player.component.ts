@@ -23,12 +23,12 @@ export class AddPlayerComponent implements OnInit {
   constructor(private store: Store<AppState>, private modalRef: NzModalRef) {}
 
   ngOnInit(): void {
-    // debugger;
-    // console.log(this.modalRef);
-    if (this.selectedClass && this.selectedSpec) {
-      this.newNameSelected(this.name);
-      this.newNoteSelected(this.note);
+    this.newNameSelected(this.name);
+    this.newNoteSelected(this.note);
+    if (this.selectedClass) {
       this.newClassSelected({ id: this.selectedClass, selected: true });
+    }
+    if (this.selectedSpec) {
       this.newSpecSelected({ id: this.selectedSpec, selected: true });
     }
   }
