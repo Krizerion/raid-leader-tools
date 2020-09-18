@@ -1,9 +1,13 @@
 <div class="container planner-container">
   <div class="row">
+    <div class="col-md-12">
+      <h2 class="raid-plan-name">Plan Name</h2>
+    </div>
+
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-12 main-team-container">
-          <h3>Main team:</h3>
+          <h3>Main Composition:</h3>
           <h3 *ngIf="(playersWithoutSelectedSpec$ | async) > 0">
             WITHOUT SPEC: {{ playersWithoutSelectedSpec$ | async }}
           </h3>
@@ -30,6 +34,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="roles-container">
@@ -52,6 +57,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12 backup-team-container">
           <h3>Backup:</h3>
@@ -80,7 +86,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <h3>Composition Details</h3>
+      <h3>Main Composition Details</h3>
       <div class="row">
         <div class="col-md-12">
           <rv-class-composition></rv-class-composition>
