@@ -19,28 +19,40 @@
     <div class="col-md-12">
       <h4>Immunities:</h4>
     </div>
-    <div class="col-md-5 utilities-ok">DH Havoc</div>
-    <div class="col-md-5 utilities-missing">Hunter</div>
-    <div class="col-md-5 utilities-missing">Paladin</div>
-    <div class="col-md-5 utilities-missing">Mage</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasDH, 'utilities-missing': !hasDH }">DH Havoc</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasHunter, 'utilities-missing': !hasHunter }">Hunter</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasPaladin, 'utilities-missing': !hasPaladin }">Paladin</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasMage, 'utilities-missing': !hasMage }">Mage</div>
   </div>
 
   <div class="row class-utilities-row">
     <div class="col-md-12">
       <h4>Buffs:</h4>
     </div>
-    <div class="col-md-5 utilities-missing">Stamina</div>
-    <div class="col-md-5 utilities-missing">Attack Power</div>
-    <div class="col-md-5 utilities-missing">Intelect</div>
-    <div class="col-md-5 utilities-missing">Bloodlust/Hero/TW</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasPriest, 'utilities-missing': !hasPriest }">Stamina</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasWarrior, 'utilities-missing': !hasWarrior }">
+      Attack Power
+    </div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasMage, 'utilities-missing': !hasMage }">Intelect</div>
+    <div
+      class="col-md-5"
+      [ngClass]="{
+        'utilities-ok': hasHunter || hasMage || hasShaman,
+        'utilities-missing': !hasHunter && !hasMage && !hasShaman
+      }"
+    >
+      Bloodlust/Hero/TW
+    </div>
   </div>
 
   <div class="row class-utilities-row">
     <div class="col-md-12">
       <h4>Debuffs:</h4>
     </div>
-    <div class="col-md-5 utilities-missing">Phisical DMG</div>
-    <div class="col-md-5 utilities-missing">Magic DMG</div>
-    <div class="col-md-5 utilities-missing">AA/Cast Speed</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasMonk, 'utilities-missing': !hasMonk }">Phisical DMG</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasDH, 'utilities-missing': !hasDH }">Magic DMG</div>
+    <div class="col-md-5" [ngClass]="{ 'utilities-ok': hasWarlock, 'utilities-missing': !hasWarlock }">
+      AA/Cast Speed
+    </div>
   </div>
 </div>
