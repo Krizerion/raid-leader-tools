@@ -122,3 +122,31 @@ export const SPECS_NAMES = {
   WLOCK_DEMO: 'Demonology',
   WLOCK_DESTRO: 'Destruction'
 };
+
+export enum Buffs {
+  INTELLECT = 'Intellect',
+  STAMINA = 'Stamina',
+  ATTACK_POWER = 'Attack power',
+  HASTE = 'BL, Hero, TW'
+}
+
+export enum Debuffs {
+  PHYSICAL = 'Physical damage',
+  MAGIC = 'Magic damage',
+  HASTE = 'AA/Cast speed'
+}
+
+export const RAID_UTILITIES = {
+  IMMUNITIES: [Classes.PALADIN, Classes.MAGE, Classes.HUNTER, Specs.DH_HAVOC],
+  BUFFS: {
+    INTELLECT: Classes.MAGE,
+    STAMINA: Classes.PRIEST,
+    ATTACK_POWER: Classes.WARRIOR
+  },
+  DEBUFFS: {
+    PHYSICAL: Classes.MONK,
+    MAGIC: Classes.DEMON_HUNTER,
+    HASTE: Classes.WARLOCK
+  },
+  BATTLE_RES: [Classes.DEATH_KNIGHT, Classes.DRUID, Classes.WARLOCK]
+};

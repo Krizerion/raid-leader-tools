@@ -4,31 +4,7 @@
   .class-composition-container {
     padding-bottom: $spacing-s;
   }
-  .class-utilities-row {
-    padding-bottom: $spacing-l;
-    .utilities-missing {
-      text-align: center;
-      border: 2px solid darkred;
-      background-color: red;
-      border-radius: 5px;
-      margin: 0 0 5px 15px;
-      margin-left: 15px;
-      font-size: 14px;
-      color: white;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
-    .utilities-ok {
-      text-align: center;
-      border: 2px solid darkgreen;
-      background-color: lightgreen;
-      border-radius: 5px;
-      margin: 0 0 5px 15px;
-      margin-left: 15px;
-      font-size: 14px;
-      color: white;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
-  }
+
   .card-item::ng-deep {
     padding-bottom: 5px;
     .card-container {

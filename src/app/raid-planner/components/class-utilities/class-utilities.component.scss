@@ -1,0 +1,22 @@
+@import 'src/styles/theme/_spacings';
+
+.utilities-container {
+  .class-utilities-row {
+    padding-bottom: $spacing-l;
+    .utility {
+      text-align: center;
+      border: 2px solid darkred;
+      background-color: red;
+      border-radius: 5px;
+      margin: 0 0 5px 15px;
+      margin-left: 15px;
+      font-size: 14px;
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    .utilities-ok {
+      border: 2px solid darkgreen;
+      background-color: lightgreen;
+    }
+  }
+}
