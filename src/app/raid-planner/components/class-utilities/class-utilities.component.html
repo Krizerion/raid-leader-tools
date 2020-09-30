@@ -5,26 +5,40 @@
     <div class="col-md-12">
       <h4>Utilities:</h4>
     </div>
-    <div class="col-md-5 utility">Immunities: {{ immunities }}</div>
-    <div class="col-md-5 utility">Battle Res</div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).utilities.immunities > 0 }">
+      Immunities: {{ (utilitiesData$ | async).utilities.immunities }}
+    </div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).utilities.battleRes }">
+      Battle Res
+    </div>
   </div>
 
   <div class="row class-utilities-row">
     <div class="col-md-12">
       <h4>Buffs:</h4>
     </div>
-    <div class="col-md-5 utility">Stamina</div>
-    <div class="col-md-5 utility">Attack Power</div>
-    <div class="col-md-5 utility">Intelect</div>
-    <div class="col-md-5 utility">Bloodlust/Hero/TW</div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).buffs.stamina }">Stamina</div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).buffs.attackPower }">
+      Attack Power
+    </div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).buffs.intellect }">
+      Intellect
+    </div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).buffs.haste }">
+      Bloodlust/Hero/TW
+    </div>
   </div>
 
   <div class="row class-utilities-row">
     <div class="col-md-12">
       <h4>Debuffs:</h4>
     </div>
-    <div class="col-md-5 utility">Phisical DMG</div>
-    <div class="col-md-5 utility">Magic DMG</div>
-    <div class="col-md-5 utility">AA/Cast Speed</div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).debuffs.physical }">
+      Physical DMG
+    </div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).debuffs.magic }">Magic DMG</div>
+    <div class="col-md-5 utility" [ngClass]="{ 'utilities-ok': (utilitiesData$ | async).debuffs.haste }">
+      AA/Cast Speed
+    </div>
   </div>
 </div>

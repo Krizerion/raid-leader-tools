@@ -139,14 +139,15 @@ export enum Debuffs {
 export const RAID_UTILITIES = {
   IMMUNITIES: [Classes.PALADIN, Classes.MAGE, Classes.HUNTER, Specs.DH_HAVOC],
   BUFFS: {
-    INTELLECT: Classes.MAGE,
-    STAMINA: Classes.PRIEST,
-    ATTACK_POWER: Classes.WARRIOR
+    INTELLECT: [Classes.MAGE],
+    STAMINA: [Classes.PRIEST],
+    ATTACK_POWER: [Classes.WARRIOR],
+    HASTE: [Classes.HUNTER, Classes.MAGE, Classes.SHAMAN]
   },
   DEBUFFS: {
-    PHYSICAL: Classes.MONK,
-    MAGIC: Classes.DEMON_HUNTER,
-    HASTE: Classes.WARLOCK
+    PHYSICAL: [Classes.MONK],
+    MAGIC: [Classes.DEMON_HUNTER],
+    HASTE: [Classes.WARLOCK]
   },
   BATTLE_RES: [Classes.DEATH_KNIGHT, Classes.DRUID, Classes.WARLOCK]
 };

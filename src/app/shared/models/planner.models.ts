@@ -18,3 +18,21 @@ export interface Player {
   roleId: string;
   note?: string;
 }
+
+export interface ClassUtilitiesData {
+  utilities: {
+    immunities: number;
+    battleRes: boolean;
+  };
+  buffs: {
+    stamina: boolean;
+    attackPower: boolean;
+    intellect: boolean;
+    haste: boolean;
+  };
+  debuffs: {
+    physical: boolean;
+    magic: boolean;
+    haste: boolean;
+  };
+}

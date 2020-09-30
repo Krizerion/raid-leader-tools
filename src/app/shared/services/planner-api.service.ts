@@ -14,8 +14,8 @@ export class PlannerApiService {
     {
       id: 1,
       name: 'Racor',
-      classId: Classes.WARLOCK,
-      specId: Specs.WLOCK_AFF,
+      classId: Classes.HUNTER,
+      specId: Specs.HUNT_BM,
       roleId: Roles.RDPS
     },
     {
