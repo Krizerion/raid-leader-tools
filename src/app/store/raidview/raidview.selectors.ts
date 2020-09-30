@@ -57,10 +57,10 @@ export const getRolesComp = createSelector(raidviewState, state => {
   state.planner.players.forEach(player => comp[player.roleId]++);
   return comp;
 });
-export const playersWithoutSelectedSpec = createSelector(raidviewState, state => {
-  const mainComp = cloneDeep(state.planner.players);
-  return mainComp.filter(player => player.specId === '').length;
-});
+// export const playersWithoutSelectedSpec = createSelector(raidviewState, state => {
+//   const mainComp = cloneDeep(state.planner.players);
+//   return mainComp.filter(player => player.specId === '').length;
+// });
 export const getClassUtilities = createSelector(raidviewState, state => {
   const mainComp = cloneDeep(state.planner.players);
   return mapUtilities(mainComp);

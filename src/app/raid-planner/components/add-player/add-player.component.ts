@@ -72,7 +72,7 @@ export class AddPlayerComponent implements OnInit {
   }
 
   validateSelection(): void {
-    if (this.name.length > 0 && this.name.length <= 12 && this.selectedSpec && this.selectedClass) {
+    if (this.name.length > 0 && this.name.length <= 12 && this.selectedClass) {
       this.modalRef.updateConfig({ nzOkDisabled: false });
     } else {
       this.modalRef.updateConfig({ nzOkDisabled: true });

@@ -8,9 +8,9 @@
       <div class="row">
         <div class="col-md-12 main-team-container">
           <h3>Main Composition:</h3>
-          <h3 *ngIf="(playersWithoutSelectedSpec$ | async) > 0">
+          <!-- <h3 *ngIf="(playersWithoutSelectedSpec$ | async) > 0">
             WITHOUT SPEC: {{ playersWithoutSelectedSpec$ | async }}
-          </h3>
+          </h3> -->
           <div class="all-cards-container" id="main-roster" [dragula]="'roster'" [(dragulaModel)]="players">
             <div style="display: inline-block;" *ngFor="let player of players">
               <rv-player-card

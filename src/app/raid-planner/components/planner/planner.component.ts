@@ -5,7 +5,7 @@ import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
-import { getRolesComp, getRoster, playersWithoutSelectedSpec } from '@app/store/raidview';
+import { getRolesComp, getRoster } from '@app/store/raidview';
 import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
@@ -25,7 +25,7 @@ export class PlannerComponent implements OnInit, OnDestroy {
   public backup: Player[] = [];
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
 
-  public playersWithoutSelectedSpec$: Observable<number> = this.store.pipe(select(playersWithoutSelectedSpec));
+  // public playersWithoutSelectedSpec$: Observable<number> = this.store.pipe(select(playersWithoutSelectedSpec));
   private destroy$ = new Subject();
 
   public newPlayerRole = '';
