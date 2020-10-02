@@ -12,7 +12,7 @@
             WITHOUT SPEC: {{ playersWithoutSelectedSpec$ | async }}
           </h3> -->
           <div class="all-cards-container" id="main-roster" [dragula]="'roster'" [(dragulaModel)]="players">
-            <div style="display: inline-block;" *ngFor="let player of players">
+            <div class="dragula-repeater" *ngFor="let player of players">
               <rv-player-card
                 nz-button
                 nzTooltipTitle="{{ player.note }}"

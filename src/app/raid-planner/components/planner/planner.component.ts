@@ -37,7 +37,8 @@ export class PlannerComponent implements OnInit, OnDestroy {
     private dragulaService: DragulaService
   ) {
     this.dragulaService.createGroup('roster', {
-      revertOnSpill: true
+      revertOnSpill: true,
+      direction: 'horizontal'
     });
 
     this.dragulaService
@@ -45,21 +46,29 @@ export class PlannerComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(args => {
         if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
-          this.store.dispatch(
-            setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
-          );
+          setTimeout(() => {
+            this.store.dispatch(
+              setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
+            );
+          });
         } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
-          this.store.dispatch(
-            setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
-          );
+          setTimeout(() => {
+            this.store.dispatch(
+              setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
+            );
+          });
         } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
-          this.store.dispatch(
-            setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
-          );
+          setTimeout(() => {
+            this.store.dispatch(
+              setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
+            );
+          });
         } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
-          this.store.dispatch(
-            setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
-          );
+          setTimeout(() => {
+            this.store.dispatch(
+              setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
+            );
+          });
         }
       });
   }
@@ -145,5 +154,6 @@ export class PlannerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
+    this.dragulaService.destroy('roster');
   }
 }
