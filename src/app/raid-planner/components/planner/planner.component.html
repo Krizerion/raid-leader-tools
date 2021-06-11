@@ -3,6 +3,9 @@
     <div class="col-md-12">
       <h2 class="raid-plan-name">Plan Name</h2>
     </div>
+    <div class="col-md-12">
+      <button class="btn btn-lg btn-primary" (click)="saveChanges()">Save Changes</button>
+    </div>
 
     <div class="col-md-8">
       <div class="row">
@@ -11,11 +14,10 @@
           <!-- <h3 *ngIf="(playersWithoutSelectedSpec$ | async) > 0">
             WITHOUT SPEC: {{ playersWithoutSelectedSpec$ | async }}
           </h3> -->
-          <div class="all-cards-container" id="main-roster" [dragula]="'roster'" [(dragulaModel)]="players">
-            <div class="dragula-repeater" *ngFor="let player of players">
+          <div class="all-cards-container" id="main-roster" [sortablejs]="players" [sortablejsOptions]="sortOptions">
+            <div class="repeater" *ngFor="let player of players">
               <rlt-player-card
                 nz-button
-                nzTooltipTitle="{{ player.note }}"
                 nzTooltipPlacement="topCenter"
                 nz-tooltip
                 [centerText]="player.name"
@@ -62,11 +64,10 @@
         <div class="col-md-12 backup-team-container">
           <h3>Backup:</h3>
           <!-- TODO -->
-          <div class="all-cards-container" id="backup-roster" [dragula]="'roster'" [(dragulaModel)]="backup">
-            <div style="display: inline-block;" *ngFor="let player of backup">
+          <div class="all-cards-container" id="backup-roster" [sortablejs]="backup" [sortablejsOptions]="sortOptions">
+            <div class="repeater" *ngFor="let player of backup">
               <rlt-player-card
                 nz-button
-                nzTooltipTitle="{{ player.note }}"
                 nzTooltipPlacement="topCenter"
                 nz-tooltip
                 [centerText]="player.name"

@@ -34,4 +34,21 @@ export class PlannerApiService {
     }
     this.firestore.collection(this.COLLECTION).doc(player.id).set(player, { merge: true });
   }
+
+  bulkUpdatePlayers(players: Player[]): any {
+    this.firestore
+      .collection(this.COLLECTION)
+      .get()
+      .toPromise()
+      .then(querySnapshot => {
+        querySnapshot.forEach(player => {
+          player.ref.set(
+            {
+              status: players.filter(updatedPlayer => updatedPlayer.id === player.id)[0].status
+            },
+            { merge: true }
+          );
+        });
+      });
+  }
 }

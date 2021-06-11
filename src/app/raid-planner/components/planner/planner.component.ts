@@ -6,11 +6,9 @@ import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
 import { getRolesComp, getRoster } from '@app/store/raid-leader-tools';
-import { setRosterDataInStore } from '@app/store/raid-leader-tools/raid-leader-tools.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { DragulaService } from 'ng2-dragula';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -24,7 +22,9 @@ export class PlannerComponent implements OnInit, OnDestroy {
   public players: Player[] = [];
   public backup: Player[] = [];
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
-
+  public sortOptions = {
+    group: 'roster'
+  };
   // public playersWithoutSelectedSpec$: Observable<number> = this.store.pipe(select(playersWithoutSelectedSpec));
   private destroy$ = new Subject();
 
@@ -33,45 +33,38 @@ export class PlannerComponent implements OnInit, OnDestroy {
   constructor(
     private modal: NzModalService,
     private plannerApiService: PlannerApiService,
-    private store: Store<AppState>,
-    private dragulaService: DragulaService
+    private store: Store<AppState>
   ) {
-    this.dragulaService.createGroup('roster', {
-      revertOnSpill: true,
-      direction: 'horizontal',
-      delay: 1000
-    });
-
-    this.dragulaService
-      .dropModel('roster')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(args => {
-        if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
-          setTimeout(() => {
-            this.store.dispatch(
-              setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
-            );
-          });
-        } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
-          setTimeout(() => {
-            this.store.dispatch(
-              setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
-            );
-          });
-        } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
-          setTimeout(() => {
-            this.store.dispatch(
-              setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
-            );
-          });
-        } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
-          setTimeout(() => {
-            this.store.dispatch(
-              setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
-            );
-          });
-        }
-      });
+    // this.dragulaService
+    //   .dropModel('roster')
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(args => {
+    //     if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
+    //       setTimeout(() => {
+    //         this.store.dispatch(
+    //           setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
+    //         );
+    //       });
+    //     } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
+    //       setTimeout(() => {
+    //         this.store.dispatch(
+    //           setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
+    //         );
+    //       });
+    //     } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
+    //       setTimeout(() => {
+    //         this.store.dispatch(
+    //           setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
+    //         );
+    //       });
+    //     } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
+    //       setTimeout(() => {
+    //         this.store.dispatch(
+    //           setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
+    //         );
+    //       });
+    //     }
+    //   });
   }
 
   ngOnInit(): void {
@@ -83,6 +76,18 @@ export class PlannerComponent implements OnInit, OnDestroy {
       this.players = cloneDeep(data.players);
       this.backup = cloneDeep(data.backup);
     });
+  }
+
+  saveChanges(): void {
+    const updatedMainTeam = this.players.map(player => ({
+      ...player,
+      status: PlayerStatus.MainTeam
+    }));
+    const updatedBench = this.backup.map(player => ({
+      ...player,
+      status: PlayerStatus.Bench
+    }));
+    this.plannerApiService.bulkUpdatePlayers([...updatedMainTeam, ...updatedBench]);
   }
 
   openAddNewPlayerModal(): void {
@@ -106,7 +111,6 @@ export class PlannerComponent implements OnInit, OnDestroy {
         name: player.name,
         selectedClass: player.classId,
         selectedSpec: player.specId,
-        note: player.note,
         id: player.id,
         status: player.status
       }
@@ -119,7 +123,6 @@ export class PlannerComponent implements OnInit, OnDestroy {
       classId: data.selectedClass,
       specId: data.selectedSpec,
       roleId: getRoleBySpecId(data.selectedSpec),
-      note: data.note,
       id: data.id,
       status: PlayerStatus.MainTeam
     };
@@ -133,7 +136,6 @@ export class PlannerComponent implements OnInit, OnDestroy {
       classId: data.selectedClass,
       specId: data.selectedSpec,
       roleId: getRoleBySpecId(data.selectedSpec),
-      note: data.note,
       id: data.id,
       status: data.status
     };
@@ -159,6 +161,5 @@ export class PlannerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
-    this.dragulaService.destroy('roster');
   }
 }

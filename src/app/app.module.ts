@@ -21,7 +21,6 @@ import { reducers } from '@app/store';
 import { MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { DragulaModule } from 'ng2-dragula';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { SortablejsModule } from 'ngx-sortablejs';
 registerLocaleData(en);
@@ -46,7 +45,6 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     SharedModule,
     AppRoutingModule,
     RouterModule,
-    DragulaModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,

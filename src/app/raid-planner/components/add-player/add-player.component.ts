@@ -11,7 +11,6 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 })
 export class AddPlayerComponent implements OnInit {
   public name = '';
-  public note = '';
   public selectedClass = '';
   public selectedSpec = '';
   public status: PlayerStatus = PlayerStatus.MainTeam;
@@ -23,7 +22,6 @@ export class AddPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.newNameSelected(this.name);
-    this.newNoteSelected(this.note);
     if (this.selectedClass) {
       this.newClassSelected({ id: this.selectedClass, selected: true });
     }
@@ -34,11 +32,6 @@ export class AddPlayerComponent implements OnInit {
 
   newNameSelected(event: string): void {
     this.name = event;
-    this.validateSelection();
-  }
-
-  newNoteSelected(event: string): void {
-    this.note = event;
     this.validateSelection();
   }
 
