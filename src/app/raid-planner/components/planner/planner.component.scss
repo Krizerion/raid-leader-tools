@@ -38,6 +38,10 @@
       display: flex;
       flex-flow: row wrap;
       padding: 15px;
+
+      .dragula-repeater {
+        display: inline-block;
+      }
     }
   }
 

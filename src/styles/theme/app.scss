@@ -83,6 +83,7 @@ html {
 /* high-performance display:none; helper */
 .gu-hide {
   left: -9999px !important;
+  display: none;
 }
 /* added to mirrorContainer (default = body) while dragging */
 .gu-unselectable {
@@ -96,4 +97,5 @@ html {
   opacity: 0.2;
   -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=20)';
   filter: alpha(opacity=20);
+  pointer-events: none;
 }
