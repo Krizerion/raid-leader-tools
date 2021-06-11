@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "raid-leader-tools": {
-      "hosting": {
-        "raid-leader-tools": [
-          "raid-leader-tools"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "raid-leader-tools"
+    "default": "raid-leader-tools-a46a1"
   }
 }

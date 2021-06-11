@@ -17,8 +17,13 @@ export interface Player {
   specId: string;
   roleId: string;
   note?: string;
+  status?: PlayerStatus;
 }
 
+export enum PlayerStatus {
+  MainTeam = 'MainTeam',
+  Bench = 'Bench'
+}
 export interface ClassUtilitiesData {
   utilities: {
     immunities: number;
