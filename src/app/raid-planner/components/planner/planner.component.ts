@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddPlayerComponent } from '@app/raid-planner/components/add-player/add-player.component';
 import { CLASSES_IMG, ROLES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
-import { Player } from '@app/shared/models/planner.models';
+import { Player, PlayerStatus } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
@@ -112,13 +112,14 @@ export class PlannerComponent implements OnInit, OnDestroy {
   }
 
   handleOk(data: AddPlayerComponent): void {
-    const player = {
+    const player: Player = {
       name: data.name,
       classId: data.selectedClass,
       specId: data.selectedSpec,
       roleId: getRoleBySpecId(data.selectedSpec),
       note: data.note,
-      id: data.id
+      id: data.id,
+      status: PlayerStatus.MainTeam
     };
     this.plannerApiService.addEditPlayer(player);
     // this.store.dispatch(addPlayer({ player }));
