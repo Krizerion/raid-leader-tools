@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/constants/add-player.constants';
 import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
-import { AppState } from '@app/store';
-import { Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
@@ -16,11 +14,11 @@ export class AddPlayerComponent implements OnInit {
   public note = '';
   public selectedClass = '';
   public selectedSpec = '';
-  public id: number = null;
+  public id: string = null;
   public classIconData: SelectableIcon[] = cloneDeep(CLASS_DATA);
   public specIconData: SelectableIcon[] = [];
 
-  constructor(private store: Store<AppState>, private modalRef: NzModalRef) {}
+  constructor(private modalRef: NzModalRef) {}
 
   ngOnInit(): void {
     this.newNameSelected(this.name);
@@ -43,7 +41,6 @@ export class AddPlayerComponent implements OnInit {
     this.validateSelection();
   }
 
-  // ! TODO, BUGG!
   newClassSelected(event: IconSelectionToggleEventData): void {
     if (event.selected) {
       this.select(this.classIconData, event);

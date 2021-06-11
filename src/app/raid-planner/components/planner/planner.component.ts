@@ -6,7 +6,7 @@ import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
 import { getRolesComp, getRoster } from '@app/store/raid-leader-tools';
-import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raid-leader-tools/raid-leader-tools.actions';
+import { setRosterDataInStore } from '@app/store/raid-leader-tools/raid-leader-tools.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -120,8 +120,8 @@ export class PlannerComponent implements OnInit, OnDestroy {
       note: data.note,
       id: data.id
     };
-    // this.plannerApiService.addPlayer(player);
-    this.store.dispatch(addPlayer({ player }));
+    this.plannerApiService.addEditPlayer(player);
+    // this.store.dispatch(addPlayer({ player }));
   }
 
   handleOkEdit(data: AddPlayerComponent): void {
@@ -133,7 +133,8 @@ export class PlannerComponent implements OnInit, OnDestroy {
       note: data.note,
       id: data.id
     };
-    this.store.dispatch(editPlayer({ player }));
+    // this.store.dispatch(editPlayer({ player }));
+    this.plannerApiService.addEditPlayer(player);
   }
 
   handleCancel(): void {

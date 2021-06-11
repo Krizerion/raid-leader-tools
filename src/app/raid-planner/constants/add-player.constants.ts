@@ -108,7 +108,7 @@ export const SPEC_DATA: { [key: string]: SelectableIcon[] } = {
     {
       url: SPECS_IMG.DH_VENG,
       selected: false,
-      id: Specs.DH_HAVOC,
+      id: Specs.DH_VENG,
       tooltipText: SPECS_NAMES.DH_VENG
     }
   ],

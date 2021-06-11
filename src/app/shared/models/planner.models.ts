@@ -11,7 +11,7 @@ export interface IconSelectionToggleEventData {
 }
 
 export interface Player {
-  id: number;
+  id?: string;
   name: string;
   classId: string;
   specId: string;
