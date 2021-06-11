@@ -49,10 +49,16 @@ export class PlannerComponent implements OnInit, OnDestroy {
     });
   }
 
-  updatePlayerPosition(event) {
+  updatePlayerPosition(event): void {
     const playerId = event.item.children[0].getAttribute('data-playerId');
+    const from = event.from.id;
     const target = event.to.id;
     let status = PlayerStatus.Bench;
+
+    if (from === target) {
+      return;
+    }
+
     if (target === 'main-roster') {
       status = PlayerStatus.MainTeam;
     }
