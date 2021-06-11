@@ -3,13 +3,13 @@
 
   <div class="row class-composition-container">
     <div class="col-md-12">
-      <rv-player-card
+      <rlt-player-card
         class="card-item"
         *ngFor="let class of classData"
         [leftText]="(classCount$ | async)[class.id].toString()"
         [centerText]="getClassNameById(class.id)"
         [className]="class.id"
-      ></rv-player-card>
+      ></rlt-player-card>
     </div>
   </div>
 </div>

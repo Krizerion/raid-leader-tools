@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Classes, Roles, Specs } from '@app/shared/constants/classes-specs-roles.constants';
 import { Player } from '@app/shared/models/planner.models';
 import { AppState } from '@app/store';
-import { setRosterDataInStore } from '@app/store/raidview';
+import { setRosterDataInStore } from '@app/store/raid-leader-tools';
 import { Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 

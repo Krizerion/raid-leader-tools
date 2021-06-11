@@ -1,10 +1,10 @@
 import { Classes, RAID_UTILITIES, Specs } from '@app/shared/constants/classes-specs-roles.constants';
 import { ClassUtilitiesData, Player } from '@app/shared/models/planner.models';
-import { RaidviewState } from '@app/store/raidview/raidview.state';
+import { RaidLeaderToolsState } from '@app/store/raid-leader-tools/raid-leader-tools.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 
-const raidviewState = createFeatureSelector<RaidviewState>('raidview');
+const raidLeaderToolsState = createFeatureSelector<RaidLeaderToolsState>('raidLeaderTools');
 
 const initialClassComposition: { [key: string]: number } = {
   DEATH_KNIGHT: 0,
@@ -46,22 +46,22 @@ const initialUtilitiesData: ClassUtilitiesData = {
   }
 };
 
-export const getRoster = createSelector(raidviewState, state => state.planner);
-export const getClassComp = createSelector(raidviewState, state => {
+export const getRoster = createSelector(raidLeaderToolsState, state => state.planner);
+export const getClassComp = createSelector(raidLeaderToolsState, state => {
   const comp = cloneDeep(initialClassComposition);
   state.planner.players.forEach(player => comp[player.classId]++);
   return comp;
 });
-export const getRolesComp = createSelector(raidviewState, state => {
+export const getRolesComp = createSelector(raidLeaderToolsState, state => {
   const comp = cloneDeep(initialRoleComposition);
   state.planner.players.forEach(player => comp[player.roleId]++);
   return comp;
 });
-// export const playersWithoutSelectedSpec = createSelector(raidviewState, state => {
+// export const playersWithoutSelectedSpec = createSelector(raidLeaderToolsState, state => {
 //   const mainComp = cloneDeep(state.planner.players);
 //   return mainComp.filter(player => player.specId === '').length;
 // });
-export const getClassUtilities = createSelector(raidviewState, state => {
+export const getClassUtilities = createSelector(raidLeaderToolsState, state => {
   const mainComp = cloneDeep(state.planner.players);
   return mapUtilities(mainComp);
 });

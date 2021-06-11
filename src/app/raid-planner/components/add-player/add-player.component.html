@@ -13,17 +13,17 @@
       <input nz-input placeholder="Additional notes..." [ngModel]="note" (ngModelChange)="newNoteSelected($event)" />
     </div>
     <div class="col-md-12 player-class-container">
-      <rv-selectable-icon-group
+      <rlt-selectable-icon-group
         [iconData]="classIconData"
         (iconSelected)="newClassSelected($event)"
-      ></rv-selectable-icon-group>
+      ></rlt-selectable-icon-group>
     </div>
     <div class="col-md-12 player-spec-container select-class-warning">
-      <rv-selectable-icon-group
+      <rlt-selectable-icon-group
         *ngIf="specIconData.length > 0; else infoMessage"
         [iconData]="specIconData"
         (iconSelected)="newSpecSelected($event)"
-      ></rv-selectable-icon-group>
+      ></rlt-selectable-icon-group>
       <ng-template #infoMessage>
         <div class="select-class-info-container">
           <nz-alert nzType="info" nzMessage="Please select class to view available specs"></nz-alert>

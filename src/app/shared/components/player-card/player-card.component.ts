@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { getBackgroundColorByClassName } from '@app/shared/utils/class-spec-utils';
 
 @Component({
-  selector: 'rv-player-card',
+  selector: 'rlt-player-card',
   templateUrl: './player-card.component.html',
   styleUrls: ['./player-card.component.scss']
 })
-export class PlayerCardComponent implements OnInit {
+export class PlayerCardComponent {
   @Input() centerText = '';
   @Input() className = '';
   @Input() topRightImgSrc = '';
@@ -14,9 +14,5 @@ export class PlayerCardComponent implements OnInit {
   @Input() leftImageSrc = '';
   @Input() leftText = '';
 
-  public cssBackgroundClass = '';
-
-  ngOnInit(): void {
-    this.cssBackgroundClass = getBackgroundColorByClassName(this.className);
-  }
+  public getBackgroundColorByClassName = getBackgroundColorByClassName;
 }

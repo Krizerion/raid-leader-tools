@@ -1,10 +1,10 @@
-import { raidviewReducer, RaidviewState } from '@app/store/raidview';
+import { raidLeaderToolsReducer, RaidLeaderToolsState } from '@app/store/raid-leader-tools';
 import { ActionReducerMap } from '@ngrx/store';
 
 export interface AppState {
-  raidview: RaidviewState;
+  raidLeaderTools: RaidLeaderToolsState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  raidview: raidviewReducer
+  raidLeaderTools: raidLeaderToolsReducer
 };

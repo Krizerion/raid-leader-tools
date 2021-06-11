@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/raidview",
+    "public": "dist/raid-leader-tools",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

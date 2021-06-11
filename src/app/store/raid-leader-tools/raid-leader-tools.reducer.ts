@@ -1,9 +1,9 @@
-import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
-import { RaidviewState } from '@app/store/raidview/raidview.state';
+import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raid-leader-tools/raid-leader-tools.actions';
+import { RaidLeaderToolsState } from '@app/store/raid-leader-tools/raid-leader-tools.state';
 import { Action, createReducer, on } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 
-export const initialState: RaidviewState = {
+export const initialState: RaidLeaderToolsState = {
   isLoading: false,
   planner: {
     players: [],
@@ -41,6 +41,6 @@ const reducer = createReducer(
   })
 );
 
-export function raidviewReducer(state: RaidviewState | undefined, action: Action): any {
+export function raidLeaderToolsReducer(state: RaidLeaderToolsState | undefined, action: Action): any {
   return reducer(state, action);
 }

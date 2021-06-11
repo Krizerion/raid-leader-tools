@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
 
 @Component({
-  selector: 'rv-selectable-icon-group',
+  selector: 'rlt-selectable-icon-group',
   templateUrl: './selectable-icon-group.component.html',
   styleUrls: ['./selectable-icon-group.component.scss']
 })

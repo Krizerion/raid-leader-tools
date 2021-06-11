@@ -5,8 +5,8 @@ import { Player } from '@app/shared/models/planner.models';
 import { PlannerApiService } from '@app/shared/services/planner-api.service';
 import { getRoleBySpecId } from '@app/shared/utils/class-spec-utils';
 import { AppState } from '@app/store';
-import { getRolesComp, getRoster } from '@app/store/raidview';
-import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raidview/raidview.actions';
+import { getRolesComp, getRoster } from '@app/store/raid-leader-tools';
+import { addPlayer, editPlayer, setRosterDataInStore } from '@app/store/raid-leader-tools/raid-leader-tools.actions';
 import { select, Store } from '@ngrx/store';
 import { cloneDeep } from 'lodash';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -15,7 +15,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'rv-planner',
+  selector: 'rlt-planner',
   templateUrl: './planner.component.html',
   styleUrls: ['./planner.component.scss']
 })

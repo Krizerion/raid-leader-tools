@@ -1,14 +1,14 @@
 {
   "targets": {
-    "raidview": {
+    "raid-leader-tools": {
       "hosting": {
-        "raidview": [
-          "raidview"
+        "raid-leader-tools": [
+          "raid-leader-tools"
         ]
       }
     }
   },
   "projects": {
-    "default": "raidview"
+    "default": "raid-leader-tools"
   }
 }

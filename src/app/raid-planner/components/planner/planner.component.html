@@ -13,7 +13,7 @@
           </h3> -->
           <div class="all-cards-container" id="main-roster" [dragula]="'roster'" [(dragulaModel)]="players">
             <div style="display: inline-block;" *ngFor="let player of players">
-              <rv-player-card
+              <rlt-player-card
                 nz-button
                 nzTooltipTitle="{{ player.note }}"
                 nzTooltipPlacement="topCenter"
@@ -24,7 +24,7 @@
                 [bottomRightImgSrc]="getSpecIconById(player.specId)"
                 [leftImageSrc]="getRoleIconById(player.roleId)"
                 [className]="player.classId"
-              ></rv-player-card>
+              ></rlt-player-card>
             </div>
           </div>
           <div class="empty-card-container" *ngIf="players && players.length < 20">
@@ -64,7 +64,7 @@
           <!-- TODO -->
           <div class="all-cards-container" id="backup-roster" [dragula]="'roster'" [(dragulaModel)]="backup">
             <div style="display: inline-block;" *ngFor="let player of backup">
-              <rv-player-card
+              <rlt-player-card
                 nz-button
                 nzTooltipTitle="{{ player.note }}"
                 nzTooltipPlacement="topCenter"
@@ -74,7 +74,7 @@
                 [bottomRightImgSrc]="getSpecIconById(player.specId)"
                 [leftImageSrc]="getRoleIconById(player.roleId)"
                 [className]="player.classId"
-              ></rv-player-card>
+              ></rlt-player-card>
             </div>
           </div>
           <!-- <div class="empty-card-container">
@@ -89,8 +89,8 @@
       <h3>Main Composition Details:</h3>
       <div class="row">
         <div class="col-md-12">
-          <rv-class-composition></rv-class-composition>
-          <rv-class-utilities></rv-class-utilities>
+          <rlt-class-composition></rlt-class-composition>
+          <rlt-class-utilities></rlt-class-utilities>
         </div>
       </div>
     </div>

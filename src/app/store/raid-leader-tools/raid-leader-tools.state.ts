@@ -1,6 +1,6 @@
 import { Player } from '@app/shared/models/planner.models';
 
-export interface RaidviewState {
+export interface RaidLeaderToolsState {
   isLoading: boolean;
   planner: {
     players: Player[];

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "raidview": {
+    "raid-leader-tools": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,15 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "rv",
+      "prefix": "rlt",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/raidview",
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
+            "outputPath": "dist/raid-leader-tools",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,18 +78,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "raidview:build"
+            "browserTarget": "raid-leader-tools:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "raidview:build:production"
+              "browserTarget": "raid-leader-tools:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "raidview:build"
+            "browserTarget": "raid-leader-tools:build"
           }
         },
         "test": {
@@ -126,11 +129,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "raidview:serve"
+            "devServerTarget": "raid-leader-tools:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "raidview:serve:production"
+              "devServerTarget": "raid-leader-tools:serve:production"
             }
           }
         },
@@ -141,7 +144,7 @@
       }
     }
   },
-  "defaultProject": "raidview",
+  "defaultProject": "raid-leader-tools",
   "cli": {
     "analytics": "7ec00280-c5fa-4e33-b2f2-05c28a5b32a9"
   }

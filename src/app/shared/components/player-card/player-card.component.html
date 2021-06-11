@@ -1,4 +1,4 @@
-<div class="card-container" [ngClass]="cssBackgroundClass">
+<div class="card-container" [ngClass]="getBackgroundColorByClassName(className)">
   <div class="left-icon icon" *ngIf="leftImageSrc">
     <img [src]="leftImageSrc" alt="left-icon" />
   </div>

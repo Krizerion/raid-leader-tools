@@ -7,7 +7,7 @@ import { cloneDeep } from 'lodash';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'rv-add-player',
+  selector: 'rlt-add-player',
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.scss']
 })

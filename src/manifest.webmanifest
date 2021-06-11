@@ -1,6 +1,6 @@
 {
-  "name": "raidview",
-  "short_name": "raidview",
+  "name": "raid-leader-tools",
+  "short_name": "raid-leader-tools",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

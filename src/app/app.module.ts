@@ -26,8 +26,9 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 
 registerLocaleData(en);
 
+// tslint:disable-next-line: typedef
 export function localStorageSyncReducer(rootReducer: any) {
-  return localStorageSync({ keys: ['raidview'], rehydrate: true })(rootReducer);
+  return localStorageSync({ keys: ['raid-leader-tools'], rehydrate: true })(rootReducer);
 }
 
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
@@ -43,16 +44,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     AppRoutingModule,
     RouterModule,
     DragulaModule.forRoot(),
-    AngularFireModule.initializeApp({
-      apiKey: 'AIzaSyAiMG2CbRpdEEqvKo34W1g2gFlNTcmjfHA',
-      authDomain: 'raidview.firebaseapp.com',
-      databaseURL: 'https://raidview.firebaseio.com',
-      projectId: 'raidview',
-      storageBucket: 'raidview.appspot.com',
-      messagingSenderId: '702544996178',
-      appId: '1:702544996178:web:d9b734ae6e10e81a053c8b',
-      measurementId: 'G-DNY7WH71N8'
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CLASSES_IMG, SPECS_IMG } from '@app/shared/constants/classes-img-paths.constants';
 
 @Component({
-  selector: 'rv-root',
+  selector: 'rlt-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
