@@ -23,7 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { DragulaModule } from 'ng2-dragula';
 import { localStorageSync } from 'ngrx-store-localstorage';
-
+import { SortablejsModule } from 'ngx-sortablejs';
 registerLocaleData(en);
 
 // tslint:disable-next-line: typedef
@@ -40,6 +40,9 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SortablejsModule.forRoot({
+      animation: 200
+    }),
     SharedModule,
     AppRoutingModule,
     RouterModule,

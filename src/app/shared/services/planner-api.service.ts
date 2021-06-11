@@ -32,9 +32,6 @@ export class PlannerApiService {
     if (!player.id) {
       player.id = this.firestore.createId();
     }
-    if (!player.status) {
-      player.status = PlayerStatus.Bench;
-    }
     this.firestore.collection(this.COLLECTION).doc(player.id).set(player, { merge: true });
   }
 }

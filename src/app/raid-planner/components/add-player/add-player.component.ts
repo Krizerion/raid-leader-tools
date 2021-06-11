@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CLASS_DATA, SPEC_DATA } from '@app/raid-planner/constants/add-player.constants';
-import { IconSelectionToggleEventData, SelectableIcon } from '@app/shared/models/planner.models';
+import { IconSelectionToggleEventData, PlayerStatus, SelectableIcon } from '@app/shared/models/planner.models';
 import { cloneDeep } from 'lodash';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
@@ -14,6 +14,7 @@ export class AddPlayerComponent implements OnInit {
   public note = '';
   public selectedClass = '';
   public selectedSpec = '';
+  public status: PlayerStatus = PlayerStatus.MainTeam;
   public id: string = null;
   public classIconData: SelectableIcon[] = cloneDeep(CLASS_DATA);
   public specIconData: SelectableIcon[] = [];

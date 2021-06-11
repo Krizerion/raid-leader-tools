@@ -38,7 +38,8 @@ export class PlannerComponent implements OnInit, OnDestroy {
   ) {
     this.dragulaService.createGroup('roster', {
       revertOnSpill: true,
-      direction: 'horizontal'
+      direction: 'horizontal',
+      delay: 1000
     });
 
     this.dragulaService
@@ -106,7 +107,8 @@ export class PlannerComponent implements OnInit, OnDestroy {
         selectedClass: player.classId,
         selectedSpec: player.specId,
         note: player.note,
-        id: player.id
+        id: player.id,
+        status: player.status
       }
     });
   }
@@ -126,13 +128,14 @@ export class PlannerComponent implements OnInit, OnDestroy {
   }
 
   handleOkEdit(data: AddPlayerComponent): void {
-    const player = {
+    const player: Player = {
       name: data.name,
       classId: data.selectedClass,
       specId: data.selectedSpec,
       roleId: getRoleBySpecId(data.selectedSpec),
       note: data.note,
-      id: data.id
+      id: data.id,
+      status: data.status
     };
     // this.store.dispatch(editPlayer({ player }));
     this.plannerApiService.addEditPlayer(player);
