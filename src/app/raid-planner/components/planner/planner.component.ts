@@ -23,9 +23,11 @@ export class PlannerComponent implements OnInit, OnDestroy {
   public backup: Player[] = [];
   public rolesCount$: Observable<{ [key: string]: number }> = this.store.pipe(select(getRolesComp));
   public sortOptions = {
-    group: 'roster'
+    group: 'roster',
+    onEnd: (event: any) => {
+      this.updatePlayerPosition(event);
+    }
   };
-  // public playersWithoutSelectedSpec$: Observable<number> = this.store.pipe(select(playersWithoutSelectedSpec));
   private destroy$ = new Subject();
 
   public newPlayerRole = '';
@@ -34,38 +36,7 @@ export class PlannerComponent implements OnInit, OnDestroy {
     private modal: NzModalService,
     private plannerApiService: PlannerApiService,
     private store: Store<AppState>
-  ) {
-    // this.dragulaService
-    //   .dropModel('roster')
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(args => {
-    //     if (args.source.id === 'backup-roster' && args.target.id === args.source.id) {
-    //       setTimeout(() => {
-    //         this.store.dispatch(
-    //           setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(this.players) })
-    //         );
-    //       });
-    //     } else if (args.source.id === 'main-roster' && args.target.id === args.source.id) {
-    //       setTimeout(() => {
-    //         this.store.dispatch(
-    //           setRosterDataInStore({ backup: cloneDeep(this.backup), players: cloneDeep(args.sourceModel) })
-    //         );
-    //       });
-    //     } else if (args.source.id === 'backup-roster' && args.target.id === 'main-roster') {
-    //       setTimeout(() => {
-    //         this.store.dispatch(
-    //           setRosterDataInStore({ backup: cloneDeep(args.sourceModel), players: cloneDeep(args.targetModel) })
-    //         );
-    //       });
-    //     } else if (args.source.id === 'main-roster' && args.target.id === 'backup-roster') {
-    //       setTimeout(() => {
-    //         this.store.dispatch(
-    //           setRosterDataInStore({ backup: cloneDeep(args.targetModel), players: cloneDeep(args.sourceModel) })
-    //         );
-    //       });
-    //     }
-    //   });
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.players.length === 0) {
@@ -78,16 +49,14 @@ export class PlannerComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveChanges(): void {
-    const updatedMainTeam = this.players.map(player => ({
-      ...player,
-      status: PlayerStatus.MainTeam
-    }));
-    const updatedBench = this.backup.map(player => ({
-      ...player,
-      status: PlayerStatus.Bench
-    }));
-    this.plannerApiService.bulkUpdatePlayers([...updatedMainTeam, ...updatedBench]);
+  updatePlayerPosition(event) {
+    const playerId = event.item.children[0].getAttribute('data-playerId');
+    const target = event.to.id;
+    let status = PlayerStatus.Bench;
+    if (target === 'main-roster') {
+      status = PlayerStatus.MainTeam;
+    }
+    this.plannerApiService.updatePlayerById(playerId, status);
   }
 
   openAddNewPlayerModal(): void {

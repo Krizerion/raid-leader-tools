@@ -3,10 +3,6 @@
     <div class="col-md-12">
       <h2 class="raid-plan-name">Plan Name</h2>
     </div>
-    <div class="col-md-12">
-      <button class="btn btn-lg btn-primary" (click)="saveChanges()">Save Changes</button>
-    </div>
-
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-12 main-team-container">
@@ -17,6 +13,7 @@
           <div class="all-cards-container" id="main-roster" [sortablejs]="players" [sortablejsOptions]="sortOptions">
             <div class="repeater" *ngFor="let player of players">
               <rlt-player-card
+                [attr.data-playerId]="player.id"
                 nz-button
                 nzTooltipPlacement="topCenter"
                 nz-tooltip
@@ -67,6 +64,7 @@
           <div class="all-cards-container" id="backup-roster" [sortablejs]="backup" [sortablejsOptions]="sortOptions">
             <div class="repeater" *ngFor="let player of backup">
               <rlt-player-card
+                [attr.data-playerId]="player.id"
                 nz-button
                 nzTooltipPlacement="topCenter"
                 nz-tooltip

@@ -35,6 +35,10 @@ export class PlannerApiService {
     this.firestore.collection(this.COLLECTION).doc(player.id).set(player, { merge: true });
   }
 
+  updatePlayerById(id: string, status: string) {
+    this.firestore.collection(this.COLLECTION).doc(id).set({ status }, { merge: true });
+  }
+
   bulkUpdatePlayers(players: Player[]): any {
     this.firestore
       .collection(this.COLLECTION)
