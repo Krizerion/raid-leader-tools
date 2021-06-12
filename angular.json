@@ -18,7 +18,10 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "firebase",
+              "@firebase/auth",
+              "@ant-design/colors"
             ],
             "outputPath": "dist/raid-leader-tools",
             "index": "src/index.html",

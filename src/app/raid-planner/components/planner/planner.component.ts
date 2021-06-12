@@ -61,8 +61,14 @@ export class PlannerComponent implements OnInit, OnDestroy {
 
     if (target === 'main-roster') {
       status = PlayerStatus.MainTeam;
+    } else if (target === 'delete-zone') {
+      this.plannerApiService.deletePlayer(playerId).then(data => {
+        console.log('item deleted');
+        return;
+      });
+    } else if (target === 'backup-roster') {
+      this.plannerApiService.updatePlayerById(playerId, status);
     }
-    this.plannerApiService.updatePlayerById(playerId, status);
   }
 
   openAddNewPlayerModal(): void {

@@ -35,7 +35,7 @@ export class PlannerApiService {
     this.firestore.collection(this.COLLECTION).doc(player.id).set(player, { merge: true });
   }
 
-  updatePlayerById(id: string, status: string) {
+  updatePlayerById(id: string, status: string): void {
     this.firestore.collection(this.COLLECTION).doc(id).set({ status }, { merge: true });
   }
 
@@ -54,5 +54,9 @@ export class PlannerApiService {
           );
         });
       });
+  }
+
+  deletePlayer(id: string): Promise<void> {
+    return this.firestore.collection(this.COLLECTION).doc(id).delete();
   }
 }
