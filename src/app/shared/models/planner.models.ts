@@ -17,6 +17,7 @@ export interface Player {
   specId: string;
   roleId: string;
   status?: PlayerStatus;
+  index?: number;
 }
 
 export enum PlayerStatus {

@@ -29,12 +29,13 @@ export class PlannerComponent implements OnInit, OnDestroy {
     }
   };
   private destroy$ = new Subject();
+  public PlayerStatus = PlayerStatus;
 
   public newPlayerRole = '';
 
   constructor(
     private modal: NzModalService,
-    private plannerApiService: PlannerApiService,
+    public plannerApiService: PlannerApiService,
     private store: Store<AppState>
   ) {}
 
@@ -51,23 +52,12 @@ export class PlannerComponent implements OnInit, OnDestroy {
 
   updatePlayerPosition(event): void {
     const playerId = event.item.children[0].getAttribute('data-playerId');
-    const from = event.from.id;
     const target = event.to.id;
-    let status = PlayerStatus.Bench;
 
-    if (from === target) {
-      return;
-    }
-
-    if (target === 'main-roster') {
-      status = PlayerStatus.MainTeam;
-    } else if (target === 'delete-zone') {
-      this.plannerApiService.deletePlayer(playerId).then(data => {
-        console.log('item deleted');
-        return;
-      });
-    } else if (target === 'backup-roster') {
-      this.plannerApiService.updatePlayerById(playerId, status);
+    if (target === 'delete-zone') {
+      this.plannerApiService.deletePlayer(playerId);
+    } else {
+      this.plannerApiService.updatePlayers(this.players, this.backup);
     }
   }
 

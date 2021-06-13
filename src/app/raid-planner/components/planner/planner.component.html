@@ -1,4 +1,8 @@
 <h1>STILL WORK IN PROGRESS</h1>
+<button class="btn btn-primary" (click)="plannerApiService.moveAllToTeam(PlayerStatus.MainTeam)">
+  Move All To Main Team
+</button>
+<button class="btn btn-danger" (click)="plannerApiService.moveAllToTeam(PlayerStatus.Bench)">Move All To Bench</button>
 <div class="container planner-container">
   <div class="row">
     <div class="col-md-12">
@@ -38,7 +42,7 @@
               ></rlt-player-card>
             </div>
           </div>
-          <div class="empty-card-container" *ngIf="players && players.length < 20">
+          <div class="empty-card-container" *ngIf="players">
             <div class="empty-card" (click)="openAddNewPlayerModal()">
               <img src="assets/images/other-icons/add-icon.png" alt="spec" />
             </div>
@@ -84,6 +88,7 @@
                 [topRightImgSrc]="getClassIconById(player.classId)"
                 [bottomRightImgSrc]="getSpecIconById(player.specId)"
                 [leftImageSrc]="getRoleIconById(player.roleId)"
+                (click)="openEditPlayerModal(player)"
                 [className]="player.classId"
               ></rlt-player-card>
             </div>

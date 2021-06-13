@@ -19,12 +19,32 @@ export class PlannerApiService {
       .snapshotChanges()
       .pipe(map(data => data.map(dbItem => dbItem.payload.doc.data())))
       .subscribe((players: Player[]) => {
+        const mainTeam = players
+          .filter(player => player.status === PlayerStatus.MainTeam)
+          .sort((first, second) => first.index - second.index);
+        const becnnh = players
+          .filter(player => player.status === PlayerStatus.Bench)
+          .sort((first, second) => first.index - second.index);
         this.store.dispatch(
           setRosterDataInStore({
-            players: players.filter(player => player.status === PlayerStatus.MainTeam),
-            backup: players.filter(player => player.status !== PlayerStatus.MainTeam)
+            players: mainTeam,
+            backup: becnnh
           })
         );
+      });
+  }
+
+  moveAllToTeam(status: PlayerStatus): void {
+    this.firestore
+      .collection(this.COLLECTION)
+      .ref.get()
+      .then(response => {
+        // console.log(response.docs);
+        const batch = this.firestore.firestore.batch();
+        response.docs.forEach((doc, index) => {
+          batch.update(doc.ref, { ...doc.data(), status } as Player);
+        });
+        batch.commit();
       });
   }
 
@@ -36,23 +56,35 @@ export class PlannerApiService {
   }
 
   updatePlayerById(id: string, status: string): void {
+    // const batch = this.firestore.firestore.batch();
+
     this.firestore.collection(this.COLLECTION).doc(id).set({ status }, { merge: true });
   }
 
-  bulkUpdatePlayers(players: Player[]): any {
+  updatePlayers(main: Player[], bench: Player[]): void {
+    main.forEach((player, index) => {
+      player.index = index;
+      player.status = PlayerStatus.MainTeam;
+    });
+
+    bench.forEach((player, index) => {
+      player.index = index;
+      player.status = PlayerStatus.Bench;
+    });
+
+    const allPlayers = [...main, ...bench];
+
     this.firestore
       .collection(this.COLLECTION)
-      .get()
-      .toPromise()
-      .then(querySnapshot => {
-        querySnapshot.forEach(player => {
-          player.ref.set(
-            {
-              status: players.filter(updatedPlayer => updatedPlayer.id === player.id)[0].status
-            },
-            { merge: true }
-          );
+      .ref.get()
+      .then(response => {
+        // console.log(response.docs);
+        const batch = this.firestore.firestore.batch();
+        response.docs.forEach(doc => {
+          const updatedPlayer = allPlayers.filter(player => player.id === doc.id)[0];
+          batch.update(doc.ref, { ...updatedPlayer });
         });
+        batch.commit();
       });
   }
 
